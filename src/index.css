@@ -2,6 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Tipografia global segura para evitar cortes de descendentes (g, j, p, q, y) */
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    line-height: 1.5; /* base segura */
+    overflow-wrap: anywhere;
+  }
+  h1, h2, h3, h4 {
+    line-height: 1.2; /* títulos com folga */
+  }
+}
+
+/* Utilitários para títulos grandes com folga extra */
+@layer components {
+  .heading-safe {
+    line-height: 1.25; /* mais folga que tight */
+    letter-spacing: -0.01em; /* leve ajuste */
+  }
+}
+
 @keyframes scroll {
   0% {
     transform: translateX(0);
@@ -13,4 +37,15 @@
 
 .animate-scroll {
   animation: scroll 20s linear infinite;
+}
+
+
+/* Indicador de scroll */
+.scroll-hint {
+  animation: bounce 2s infinite;
+}
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-8px); }
+  60% { transform: translateY(-4px); }
 }
