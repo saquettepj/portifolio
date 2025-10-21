@@ -17,79 +17,236 @@ interface Project {
 
 const technologies: Technology[] = [
   {
+    img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg',
+    ref: '#',
+    name: 'Python',
+    description: 'Linguagem de programação versátil'
+  },
+  {
     img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg',
-    ref: 'https://react.dev/',
+    ref: '#',
     name: 'React',
-    description: 'Biblioteca JavaScript para construir interfaces de usuário'
+    description: 'Biblioteca JavaScript para UIs'
   },
   {
     img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg',
-    ref: 'https://www.typescriptlang.org/',
+    ref: '#',
     name: 'TypeScript',
     description: 'JavaScript com tipagem estática'
   },
   {
-    img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg',
-    ref: 'https://nodejs.org/',
-    name: 'Node.js',
-    description: 'Runtime JavaScript para servidor'
+    img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg',
+    ref: '#',
+    name: 'JavaScript',
+    description: 'Linguagem de programação web'
   },
   {
-    img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg',
-    ref: 'https://www.python.org/',
-    name: 'Python',
-    description: 'Linguagem de programação versátil e poderosa'
+    img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg',
+    ref: '#',
+    name: 'NodeJS',
+    description: 'Runtime JavaScript no servidor'
+  },
+  {
+    img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/xml/xml-plain.svg',
+    ref: '#',
+    name: 'XML',
+    description: 'Linguagem de marcação extensível'
+  },
+  {
+    img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg',
+    ref: '#',
+    name: 'HTML',
+    description: 'Linguagem de marcação para web'
+  },
+  {
+    img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg',
+    ref: '#',
+    name: 'CSS',
+    description: 'Linguagem de estilização'
+  },
+  {
+    img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg',
+    ref: '#',
+    name: 'SQL',
+    description: 'Linguagem de consulta estruturada'
+  },
+  {
+    img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/json/json-plain.svg',
+    ref: '#',
+    name: 'JSON',
+    description: 'Notação de objetos JavaScript'
+  },
+  {
+    img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/scikitlearn/scikitlearn-original.svg',
+    ref: '#',
+    name: 'Scikit-learn',
+    description: 'Biblioteca de Machine Learning'
+  },
+  {
+    img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/streamlit/streamlit-original.svg',
+    ref: '#',
+    name: 'Streamlit',
+    description: 'Framework para apps de dados'
+  },
+  {
+    img: 'https://cdn.brandfetch.io/idiAAavgWY/w/1188/h/222/theme/dark/logo.png?c=1bxid64Mup7aczewSAYMX&t=1759344354267',
+    ref: '#',
+    name: 'Thunkable',
+    description: 'Plataforma Low Code'
+  },
+  {
+    img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg',
+    ref: '#',
+    name: 'NextJS',
+    description: 'Framework React (Frame)'
+  },
+  {
+    img: 'https://icon.icepanel.io/Technology/png-shadow-512/Fastify.png',
+    ref: '#',
+    name: 'Fastify',
+    description: 'Framework NodeJS (Frame)'
+  },
+  {
+    img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg',
+    ref: '#',
+    name: 'Express',
+    description: 'Framework NodeJS (Frame)'
+  },
+  {
+    img: 'https://icon.icepanel.io/Technology/svg/Nest.js.svg',
+    ref: '#',
+    name: 'NestJS',
+    description: 'Framework NodeJS (Frame)'
+  },
+  {
+    img: 'https://icon.icepanel.io/Technology/svg/Knex.js.svg',
+    ref: '#',
+    name: 'Knex',
+    description: 'Query Builder SQL (Frame)'
+  },
+  {
+    img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prisma/prisma-original.svg',
+    ref: '#',
+    name: 'Prisma',
+    description: 'ORM para NodeJS & TypeScript'
+  },
+  {
+    img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg',
+    ref: '#',
+    name: 'Tailwind',
+    description: 'Framework CSS (Frame)'
   },
   {
     img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg',
-    ref: 'https://www.postgresql.org/',
+    ref: '#',
     name: 'PostgreSQL',
-    description: 'Banco de dados relacional avançado'
+    description: 'Banco de dados relacional (RDB)'
   },
   {
-    img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg',
-    ref: 'https://www.docker.com/',
-    name: 'Docker',
-    description: 'Plataforma de containerização'
+    img: 'https://cdn.brandfetch.io/id7gN4JouK/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1735286125879',
+    ref: '#',
+    name: 'N8N',
+    description: 'Automação de workflows'
   },
   {
     img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg',
-    ref: 'https://git-scm.com/',
+    ref: '#',
     name: 'Git',
     description: 'Sistema de controle de versão'
   },
   {
-    img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg',
-    ref: 'https://tailwindcss.com/',
-    name: 'Tailwind CSS',
-    description: 'Framework CSS utility-first'
+    img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg',
+    ref: '#',
+    name: 'Docker',
+    description: 'Plataforma de containerização'
+  },
+  {
+    img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-plain.svg',
+    ref: '#',
+    name: 'Compose',
+    description: 'Orquestração de containers Docker'
+  },
+  {
+    img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg',
+    ref: '#',
+    name: 'Google Cloud',
+    description: 'Plataforma de nuvem (GCP)'
+  },
+  {
+    img: 'https://icon.icepanel.io/Technology/png-shadow-512/AWS.png',
+    ref: '#',
+    name: 'AWS',
+    description: 'Plataforma de nuvem (AWS)'
+  },
+  {
+    img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-plain.svg',
+    ref: '#',
+    name: 'Cloud Run',
+    description: 'Execução de containers (Serverless)'
+  },
+  {
+    img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jest/jest-plain.svg',
+    ref: '#',
+    name: 'Jest',
+    description: 'Framework de testes (Test)'
+  },
+  {
+    img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vitest/vitest-original.svg',
+    ref: '#',
+    name: 'Vitest',
+    description: 'Framework de testes (Test)'
+  },
+  {
+    img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sentry/sentry-original.svg',
+    ref: '#',
+    name: 'Sentry',
+    description: 'Monitoramento de erros'
   }
 ];
 
+
 const projects: Project[] = [
   {
-    img: 'https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=800',
-    ref: '#',
-    name: 'E-commerce Platform',
-    description: 'Plataforma completa de e-commerce com carrinho e pagamentos'
+    img: '/images/DJ.png',
+    ref: 'https://saquettepj.github.io/DJ-app/',
+    name: 'Modificação em plataforma de DJ',
+    description: 'Melhoria em plataforma de musica gerada por inteligência artificial.'
   },
   {
-    img: 'https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg?auto=compress&cs=tinysrgb&w=800',
-    ref: '#',
-    name: 'Dashboard Analytics',
-    description: 'Dashboard para análise de dados em tempo real'
+    img: '/images/FOURSALES.png',
+    ref: 'https://www.foursales.com.br/candidatos',
+    name: 'FourSales - Desenvolvedor Fullstack',
+    description: 'Desenvolvimento frontend com React/Redux, focado em componentes reutilizáveis e UI/UX.'
   },
   {
-    img: 'https://images.pexels.com/photos/267350/pexels-photo-267350.jpeg?auto=compress&cs=tinysrgb&w=800',
-    ref: '#',
-    name: 'Social Network',
-    description: 'Rede social com chat e compartilhamento de mídia'
+    img: '/images/ANALISE.png',
+    ref: 'https://saquettepj.github.io/AI-static-report/',
+    name: 'Analise de IA Generativa',
+    description: 'Uma analise desenvolvida para empresa parceira, consultoria na aquisição de serviços de IA generativa.'
   },
   {
-    img: 'https://images.pexels.com/photos/1089438/pexels-photo-1089438.jpeg?auto=compress&cs=tinysrgb&w=800',
-    ref: '#',
-    name: 'Task Manager',
-    description: 'Sistema de gerenciamento de tarefas e projetos'
+    img: '/images/SAAS.png',
+    ref: 'https://github.com/saquettepj',
+    name: 'Sistema Micro-SaaS B2B',
+    description: 'Plataforma full-stack para gestão de ordens de serviço e vendas (React, NestJS, GCP).'
+  },
+  {
+    img: '/images/N8N.png',
+    ref: 'https://github.com/saquettepj',
+    name: 'Automações com IA (N8N)',
+    description: 'Automação de processos (web scraping, agentes de busca) com N8N e IA para o mercado financeiro.'
+  },
+  {
+    img: '/images/CHAT.png',
+    ref: 'https://github.com/saquettepj',
+    name: 'Chatbot Agente com IA Generativa',
+    description: 'Chat com IA generativa com acesso a banco de dados vetorial e API de busca informações em documentos.'
+  },
+  {
+    img: '/images/IA.png',
+    ref: 'https://github.com/saquettepj',
+    name: 'API para Modelo de IA Preditivo',
+    description: 'API em Python para servir modelo de IA treinado para predição de valores contínuos.'
   }
 ];
 
@@ -98,11 +255,14 @@ export default function Home() {
   const [currentProject, setCurrentProject] = useState(1);
   const [hoveredProject, setHoveredProject] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
-  const [showScrollHint, setShowScrollHint] = useState(false); // Default false, effect will set it
+  const [showScrollHint, setShowScrollHint] = useState(false);
   const projectScrollRef = useRef<NodeJS.Timeout | null>(null);
   const techContainerRef = useRef<HTMLDivElement>(null);
-  const projectsSectionRef = useRef<HTMLDivElement>(null); // Ref da seção (mantida)
-  const projectsTitleRef = useRef<HTMLHeadingElement>(null); // *** NOVA REF PARA O TÍTULO ***
+  const projectsSectionRef = useRef<HTMLDivElement>(null);
+  const projectsTitleRef = useRef<HTMLHeadingElement>(null);
+
+  const techScrollerRef = useRef<HTMLDivElement>(null);
+  const [techScroll, setTechScroll] = useState({ atStart: true, atEnd: false });
 
   useEffect(() => {
     const scrollProjects = () => {
@@ -117,36 +277,78 @@ export default function Home() {
     };
   }, [hoveredProject, isAnimating]);
 
-  // *** USEEFFECT MODIFICADO ***
   useEffect(() => {
     const checkScrollHint = () => {
       if (projectsTitleRef.current) {
-        // Pega a posição do título "Projetos"
         const rect = projectsTitleRef.current.getBoundingClientRect();
-        
-        // Mostra o hint APENAS se o topo do título estiver abaixo da tela
-        // (ou seja, o título ainda não está visível)
         const isTitleBelowScreen = rect.top >= window.innerHeight;
         setShowScrollHint(isTitleBelowScreen);
-
       } else if (window.scrollY === 0) {
-        // Caso inicial, se estivermos no topo da página, mostre o hint
         setShowScrollHint(true);
       }
     };
 
-    checkScrollHint(); // Verifica no carregamento da página
+    checkScrollHint();
     window.addEventListener('scroll', checkScrollHint, { passive: true });
     window.addEventListener('resize', checkScrollHint);
-    
+
     return () => {
       window.removeEventListener('scroll', checkScrollHint);
       window.removeEventListener('resize', checkScrollHint);
     };
-  }, []); // Dependência vazia, roda apenas 1 vez para adicionar os listeners
+  }, []);
+
+  useEffect(() => {
+    const handleTechScrollState = () => {
+      if (techScrollerRef.current) {
+        const { scrollLeft, scrollWidth, clientWidth } = techScrollerRef.current;
+        const atStart = scrollLeft < 10;
+        const atEnd = (scrollWidth - scrollLeft - clientWidth) < 10;
+
+        setTechScroll({ atStart, atEnd });
+      }
+    };
+
+    handleTechScrollState();
+    const scroller = techScrollerRef.current;
+    if (scroller) {
+      scroller.addEventListener('scroll', handleTechScrollState, { passive: true });
+    }
+    window.addEventListener('resize', handleTechScrollState);
+
+    return () => {
+      if (scroller) {
+        scroller.removeEventListener('scroll', handleTechScrollState);
+      }
+      window.removeEventListener('resize', handleTechScrollState);
+    };
+  }, []);
+
 
   const handleTechClick = (index: number) => {
     window.open(technologies[index % technologies.length].ref, '_blank');
+  };
+
+  const handleTechScroll = (direction: 'left' | 'right') => {
+    if (techScrollerRef.current) {
+      const scrollAmount = direction === 'left'
+        ? -techScrollerRef.current.clientWidth * 0.75
+        : techScrollerRef.current.clientWidth * 0.75;
+
+      techScrollerRef.current.scrollBy({
+        left: scrollAmount,
+        behavior: 'smooth'
+      });
+
+      setTimeout(() => {
+        if (techScrollerRef.current) {
+          const { scrollLeft, scrollWidth, clientWidth } = techScrollerRef.current;
+          const atStart = scrollLeft < 10;
+          const atEnd = (scrollWidth - scrollLeft - clientWidth) < 10;
+          setTechScroll({ atStart, atEnd });
+        }
+      }, 400);
+    }
   };
 
   const handleProjectChange = (direction: 'left' | 'right') => {
@@ -163,8 +365,6 @@ export default function Home() {
   const handleProjectClick = () => {
     window.open(projects[currentProject].ref, '_blank');
   };
-
-  const triplicatedTechs = [...technologies, ...technologies, ...technologies];
 
   const getProjectStyle = (index: number) => {
     const diff = index - currentProject;
@@ -213,90 +413,94 @@ export default function Home() {
 
         <section className="mb-32">
           <h3 className="text-4xl sm:text-5xl font-bold mb-12 text-center text-gray-200">Conhecimento em</h3>
-          <div className="relative overflow-hidden py-20">
+
+          <div className="relative w-full flex items-center group">
+
+            {!techScroll.atStart && (
+              <button
+                onClick={() => handleTechScroll('left')}
+                className="absolute left-0 z-10 bg-gray-800/90 hover:bg-gray-700 p-2 rounded-full shadow-lg transition-all hover:scale-110
+                           opacity-0 group-hover:opacity-100 -translate-x-1/2"
+                aria-label="Scroll left"
+              >
+                <ChevronLeft className="w-6 h-6" />
+              </button>
+            )}
+
             <div
-              ref={techContainerRef}
-              className="flex gap-8 animate-scroll"
-              onMouseEnter={() => {
-                if (techContainerRef.current) {
-                  techContainerRef.current.style.animationPlayState = 'paused';
-                }
-              }}
-              onMouseLeave={() => {
-                if (techContainerRef.current) {
-                  techContainerRef.current.style.animationPlayState = 'running';
+              ref={techScrollerRef}
+              className="relative w-full overflow-x-auto py-20 
+                         [mask-image:linear-gradient(to_right,transparent_0%,black_10%,black_90%,transparent_100%)]
+                         [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+              onScroll={() => {
+                if (techScrollerRef.current) {
+                  const { scrollLeft, scrollWidth, clientWidth } = techScrollerRef.current;
+                  const atStart = scrollLeft < 10;
+                  const atEnd = (scrollWidth - scrollLeft - clientWidth) < 10;
+                  setTechScroll({ atStart, atEnd });
                 }
               }}
             >
-              {triplicatedTechs.map((tech, index) => {
-                // Calcular opacidade baseada na posição (efeito fade nas bordas)
-                const totalItems = triplicatedTechs.length;
-                const position = index / (totalItems - 1);
-                let opacity = 1;
-                
-                // Fade nas primeiras e últimas posições
-                if (position < 0.1) {
-                  opacity = position / 0.1;
-                } else if (position > 0.9) {
-                  opacity = (1 - position) / 0.1;
-                }
-                
-                return (
-                  <div
-                    key={index}
-                    className="relative flex-shrink-0 group"
-                    style={{ opacity: Math.max(opacity, 0.3) }}
-                    onMouseEnter={() => {
-                      setHoveredTech(index);
-                      if (techContainerRef.current) {
-                        techContainerRef.current.style.animationPlayState = 'paused';
-                      }
-                    }}
-                    onMouseLeave={() => {
-                      setHoveredTech(null);
-                      if (techContainerRef.current) {
-                        techContainerRef.current.style.animationPlayState = 'running';
-                      }
-                    }}
-                    onClick={() => handleTechClick(index)}
-                  >
-                    <div className="w-24 h-24 bg-gray-800 rounded-xl p-4 flex items-center justify-center cursor-pointer transition-all hover:scale-125 hover:bg-gray-700 hover:shadow-xl hover:shadow-gray-500/20">
-                      <img
-                        src={tech.img}
-                        alt={tech.name}
-                        className="w-full h-full object-contain"
-                      />
-                    </div>
-
-                    {hoveredTech === index && (
-                      <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-4 py-2 bg-gray-900 rounded-lg shadow-xl whitespace-nowrap z-20 border border-gray-600">
-                        <p className="text-sm font-semibold text-gray-200">{tech.name}</p>
-                        <p className="text-xs text-gray-400 max-w-xs">{tech.description}</p>
-                        <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-1">
-                          <div className="border-8 border-transparent border-t-gray-900"></div>
-                        </div>
+              <div
+                ref={techContainerRef}
+                className="whitespace-nowrap"
+              >
+                {technologies.map((tech, index) => {
+                  return (
+                    <div
+                      key={index}
+                      className="relative inline-block align-top group mr-8"
+                      onMouseEnter={() => {
+                        setHoveredTech(index);
+                      }}
+                      onMouseLeave={() => {
+                        setHoveredTech(null);
+                      }}
+                      onClick={() => handleTechClick(index)}
+                    >
+                      <div className="w-24 h-24 bg-gray-800 rounded-xl p-4 flex items-center justify-center cursor-pointer transition-all hover:scale-125 hover:bg-gray-700 hover:shadow-xl hover:shadow-gray-500/20">
+                        <img
+                          src={tech.img}
+                          alt={tech.name}
+                          className="w-full h-full object-contain"
+                        />
                       </div>
-                    )}
-                  </div>
-                );
-              })}
+
+                      {hoveredTech === index && (
+                        <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-4 py-2 bg-gray-900 rounded-lg shadow-xl whitespace-nowrap z-20 border border-gray-600">
+                          <p className="text-sm font-semibold text-gray-200">{tech.name}</p>
+                          <p className="text-xs text-gray-400 max-w-xs">{tech.description}</p>
+                          <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-1">
+                            <div className="border-8 border-transparent border-t-gray-900"></div>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+
+              </div>
             </div>
+
+            {!techScroll.atEnd && (
+              <button
+                onClick={() => handleTechScroll('right')}
+                className="absolute right-0 z-10 bg-gray-800/90 hover:bg-gray-700 p-2 rounded-full shadow-lg transition-all hover:scale-110
+                           opacity-0 group-hover:opacity-100 translate-x-1/2"
+                aria-label="Scroll right"
+              >
+                <ChevronRight className="w-6 h-6" />
+              </button>
+            )}
+
           </div>
         </section>
 
         <section ref={projectsSectionRef} className="mb-16">
-          {/* *** REF ADICIONADA AO H3 *** */}
           <h3 ref={projectsTitleRef} className="text-4xl sm:text-5xl font-bold mb-12 text-center text-gray-200">
             Projetos
           </h3>
           <div className="relative h-[500px] flex items-center justify-center">
-            <button
-              onClick={() => handleProjectChange('left')}
-              className="absolute left-2 z-40 bg-gray-800/90 hover:bg-gray-700 p-3 rounded-full shadow-lg transition-all hover:scale-110"
-              aria-label="Previous project"
-            >
-              <ChevronLeft className="w-8 h-8" />
-            </button>
 
             <div className="relative w-full h-full flex items-center justify-center" style={{ perspective: '1500px' }}>
               {projects.map((project, index) => {
@@ -351,13 +555,6 @@ export default function Home() {
               })}
             </div>
 
-            <button
-              onClick={() => handleProjectChange('right')}
-              className="absolute right-2 z-40 bg-gray-800/90 hover:bg-gray-700 p-3 rounded-full shadow-lg transition-all hover:scale-110"
-              aria-label="Next project"
-            >
-              <ChevronRight className="w-8 h-8" />
-            </button>
           </div>
 
           <div className="mt-8 flex justify-center gap-2">
@@ -378,9 +575,8 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Este bloco agora é controlado pela nova lógica */}
         {showScrollHint && (
-          <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 z-50">
+          <div className="fixed bottom-16 left-1/2 transform -translate-x-1/2 z-50">
             <div className="flex flex-col items-center text-gray-400">
               <span className="text-sm mb-2">Role para ver mais</span>
               <ChevronDown className="w-6 h-6 scroll-hint" />
