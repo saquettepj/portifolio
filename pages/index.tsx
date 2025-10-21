@@ -510,18 +510,21 @@ export default function Home() {
                 return (
                   <div
                     key={index}
-                    className="absolute transition-all duration-700 ease-out cursor-pointer"
+                    className="absolute transition-all duration-700 ease-out cursor-pointer group"
                     style={{
                       ...style,
                       transformStyle: 'preserve-3d',
                     }}
                     onMouseEnter={() => index === currentProject && setHoveredProject(true)}
-                    onMouseLeave={() => setHoveredProject(false)}
+                    onMouseLeave={() => index === currentProject && setHoveredProject(false)}
                     onClick={() => {
                       if (index === currentProject) {
                         handleProjectClick();
                         return;
                       }
+                      
+                      setHoveredProject(true); 
+
                       if (absPos === 1) {
                         handleProjectChange('right');
                         return;
@@ -532,15 +535,17 @@ export default function Home() {
                       }
                     }}
                   >
-                    <div className="w-80 h-96 bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl shadow-2xl overflow-hidden border-4 border-gray-700 relative">
-                      <img
-                        src={project.img}
-                        alt={project.name}
-                        className="w-full h-full object-cover"
-                      />
-
-                      {hoveredProject && index === currentProject && (
-                        <div className="absolute inset-0 bg-black/80 flex flex-col items-center justify-center p-6 backdrop-blur-sm">
+                    <div className="w-80 h-96 bg-gray-900 rounded-2xl shadow-2xl border-4 border-gray-700 relative">
+                      <div className="w-full h-full rounded-xl border-2 border-gray-700 overflow-hidden">
+                        <img
+                          src={project.img}
+                          alt={project.name}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      {index === currentProject && (
+                        <div className="absolute inset-0 rounded-2xl bg-black/80 flex flex-col items-center justify-center p-6 backdrop-blur-sm 
+                                       opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                           <h4 className="text-2xl font-bold mb-3 text-gray-200">
                             {project.name}
                           </h4>
@@ -554,7 +559,6 @@ export default function Home() {
                 );
               })}
             </div>
-
           </div>
 
           <div className="mt-8 flex justify-center gap-2">
@@ -562,6 +566,7 @@ export default function Home() {
               <button
                 key={index}
                 onClick={() => {
+                  setHoveredProject(false); 
                   setCurrentProject(index);
                 }}
                 className={`w-3 h-3 rounded-full transition-all ${
@@ -576,7 +581,7 @@ export default function Home() {
         </section>
 
         {showScrollHint && (
-          <div className="fixed bottom-16 left-1/2 transform -translate-x-1/2 z-50">
+          <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50">
             <div className="flex flex-col items-center text-gray-400">
               <span className="text-sm mb-2">Role para ver mais</span>
               <ChevronDown className="w-6 h-6 scroll-hint" />
