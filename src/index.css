@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-128px * 8 - 32px * 8));
+  }
+}
+
+.animate-scroll {
+  animation: scroll 20s linear infinite;
+}
