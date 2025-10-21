@@ -18,187 +18,187 @@ interface Project {
 const technologies: Technology[] = [
   {
     img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg',
-    ref: '#',
+    ref: 'https://www.python.org/',
     name: 'Python',
     description: 'Linguagem de programação versátil'
   },
   {
     img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg',
-    ref: '#',
+    ref: 'https://react.dev/',
     name: 'React',
     description: 'Biblioteca JavaScript para UIs'
   },
   {
     img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg',
-    ref: '#',
+    ref: 'https://www.typescriptlang.org/',
     name: 'TypeScript',
     description: 'JavaScript com tipagem estática'
   },
   {
     img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg',
-    ref: '#',
+    ref: 'https://developer.mozilla.org/pt-BR/docs/Web/JavaScript',
     name: 'JavaScript',
     description: 'Linguagem de programação web'
   },
   {
     img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg',
-    ref: '#',
+    ref: 'https://nodejs.org/pt',
     name: 'NodeJS',
     description: 'Runtime JavaScript no servidor'
   },
   {
     img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/xml/xml-plain.svg',
-    ref: '#',
+    ref: 'https://developer-mozilla-org.translate.goog/en-US/docs/Web/XML/Guides/XML_introduction?_x_tr_sl=en&_x_tr_tl=pt&_x_tr_hl=pt&_x_tr_pto=tc',
     name: 'XML',
     description: 'Linguagem de marcação extensível'
   },
   {
     img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg',
-    ref: '#',
+    ref: 'https://developer.mozilla.org/pt-BR/docs/Web/HTML',
     name: 'HTML',
     description: 'Linguagem de marcação para web'
   },
   {
     img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg',
-    ref: '#',
+    ref: 'https://developer.mozilla.org/pt-BR/docs/Web/CSS',
     name: 'CSS',
     description: 'Linguagem de estilização'
   },
   {
     img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg',
-    ref: '#',
+    ref: 'https://docs-oracle-com.translate.goog/?_x_tr_sl=en&_x_tr_tl=pt&_x_tr_hl=pt&_x_tr_pto=tc&_x_tr_hist=true#GUID-4B6624DA-92BA-48C2-B045-D8B71046E81B',
     name: 'SQL',
     description: 'Linguagem de consulta estruturada'
   },
   {
     img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/json/json-plain.svg',
-    ref: '#',
+    ref: 'https://www.json.org/json-en.html',
     name: 'JSON',
     description: 'Notação de objetos JavaScript'
   },
   {
     img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/scikitlearn/scikitlearn-original.svg',
-    ref: '#',
+    ref: 'https://scikit-learn.org/stable/',
     name: 'Scikit-learn',
     description: 'Biblioteca de Machine Learning'
   },
   {
     img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/streamlit/streamlit-original.svg',
-    ref: '#',
+    ref: 'https://streamlit.io/',
     name: 'Streamlit',
     description: 'Framework para apps de dados'
   },
   {
     img: 'https://cdn.brandfetch.io/idiAAavgWY/w/1188/h/222/theme/dark/logo.png?c=1bxid64Mup7aczewSAYMX&t=1759344354267',
-    ref: '#',
+    ref: 'https://streamlit.io/',
     name: 'Thunkable',
     description: 'Plataforma Low Code'
   },
   {
     img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg',
-    ref: '#',
+    ref: 'https://nextjs.org/',
     name: 'NextJS',
     description: 'Framework React (Frame)'
   },
   {
     img: 'https://icon.icepanel.io/Technology/png-shadow-512/Fastify.png',
-    ref: '#',
+    ref: 'https://fastify.dev/',
     name: 'Fastify',
     description: 'Framework NodeJS (Frame)'
   },
   {
     img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg',
-    ref: '#',
+    ref: 'https://expressjs.com/',
     name: 'Express',
     description: 'Framework NodeJS (Frame)'
   },
   {
     img: 'https://icon.icepanel.io/Technology/svg/Nest.js.svg',
-    ref: '#',
+    ref: 'https://expressjs.com/',
     name: 'NestJS',
     description: 'Framework NodeJS (Frame)'
   },
   {
     img: 'https://icon.icepanel.io/Technology/svg/Knex.js.svg',
-    ref: '#',
+    ref: 'https://knexjs.org/',
     name: 'Knex',
     description: 'Query Builder SQL (Frame)'
   },
   {
     img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prisma/prisma-original.svg',
-    ref: '#',
+    ref: 'https://www.prisma.io/',
     name: 'Prisma',
     description: 'ORM para NodeJS & TypeScript'
   },
   {
     img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg',
-    ref: '#',
+    ref: 'https://www.prisma.io/',
     name: 'Tailwind',
     description: 'Framework CSS (Frame)'
   },
   {
     img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg',
-    ref: '#',
+    ref: 'https://www.postgresql.org/',
     name: 'PostgreSQL',
     description: 'Banco de dados relacional (RDB)'
   },
   {
     img: 'https://cdn.brandfetch.io/id7gN4JouK/theme/dark/logo.svg?c=1bxid64Mup7aczewSAYMX&t=1735286125879',
-    ref: '#',
+    ref: 'https://n8n.io/',
     name: 'N8N',
     description: 'Automação de workflows'
   },
   {
     img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg',
-    ref: '#',
+    ref: 'https://git-scm.com/',
     name: 'Git',
     description: 'Sistema de controle de versão'
   },
   {
     img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg',
-    ref: '#',
+    ref: 'https://www.docker.com/',
     name: 'Docker',
     description: 'Plataforma de containerização'
   },
   {
     img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-plain.svg',
-    ref: '#',
+    ref: 'https://docs.docker.com/compose/',
     name: 'Compose',
     description: 'Orquestração de containers Docker'
   },
   {
     img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg',
-    ref: '#',
+    ref: 'https://cloud.google.com/?hl=pt-BR',
     name: 'Google Cloud',
     description: 'Plataforma de nuvem (GCP)'
   },
   {
     img: 'https://icon.icepanel.io/Technology/png-shadow-512/AWS.png',
-    ref: '#',
+    ref: 'https://aws.amazon.com/pt/',
     name: 'AWS',
     description: 'Plataforma de nuvem (AWS)'
   },
   {
     img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-plain.svg',
-    ref: '#',
+    ref: 'https://cloud.google.com/?hl=pt-BR',
     name: 'Cloud Run',
     description: 'Execução de containers (Serverless)'
   },
   {
     img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jest/jest-plain.svg',
-    ref: '#',
+    ref: 'https://jestjs.io/',
     name: 'Jest',
     description: 'Framework de testes (Test)'
   },
   {
     img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vitest/vitest-original.svg',
-    ref: '#',
+    ref: 'https://vitest.dev/',
     name: 'Vitest',
     description: 'Framework de testes (Test)'
   },
   {
     img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sentry/sentry-original.svg',
-    ref: '#',
+    ref: 'https://sentry.io/welcome/',
     name: 'Sentry',
     description: 'Monitoramento de erros'
   }
