@@ -78,7 +78,7 @@ jobs:
       # --- FIM DO NOVO STEP ---
 
       - name: Build with Next.js
-        run: ${{ steps.detect-package-manager.outputs.runner }} next build
+        run: NODE_ENV=production ${{ steps.detect-package-manager.outputs.runner }} next build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
