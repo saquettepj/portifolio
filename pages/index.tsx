@@ -223,43 +223,43 @@ export default function Home() {
 
   const projects: Project[] = [
     {
-      img: './images/dj.png',
+      img: '/images/dj.png',
       ref: 'https://saquettepj.github.io/DJ-app/',
       name: 'Modificação em plataforma de DJ',
       description: 'Melhoria em plataforma de musica gerada por inteligência artificial.'
     },
     {
-      img: './images/foursales.png',
+      img: '/images/foursales.png',
       ref: 'https://www.foursales.com.br/candidatos',
       name: 'FourSales - Desenvolvedor Fullstack',
       description: 'Desenvolvimento frontend com React/Redux, focado em componentes reutilizáveis e UI/UX.'
     },
     {
-      img: './images/analise.png',
+      img: '/images/analise.png',
       ref: 'https://saquettepj.github.io/AI-static-report/',
       name: 'Analise de IA Generativa',
       description: 'Uma analise desenvolvida para empresa parceira, consultoria na aquisição de serviços de IA generativa.'
     },
     {
-      img: './images/saas.png',
+      img: '/images/saas.png',
       ref: 'https://github.com/saquettepj',
       name: 'Sistema Micro-SaaS B2B',
       description: 'Plataforma full-stack para gestão de ordens de serviço e vendas (React, NestJS, GCP).'
     },
     {
-      img: './images/n8n.png',
+      img: '/images/n8n.png',
       ref: 'https://github.com/saquettepj',
       name: 'Automações com IA (N8N)',
       description: 'Automação de processos (web scraping, agentes de busca) com N8N e IA para o mercado financeiro.'
     },
     {
-      img: './images/chat.png',
+      img: '/images/chat.png',
       ref: 'https://github.com/saquettepj',
       name: 'Chatbot Agente com IA Generativa',
       description: 'Chat com IA generativa com acesso a banco de dados vetorial e API de busca informações em documentos.'
     },
     {
-      img: './images/ia.png',
+      img: '/images/ia.png',
       ref: 'https://github.com/saquettepj',
       name: 'API para Modelo de IA Preditivo',
       description: 'API em Python para servir modelo de IA treinado para predição de valores contínuos.'
