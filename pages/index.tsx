@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight, ChevronDown } from 'lucide-react';
 
 // Base path para GitHub Pages (apenas em produção)
-const basePath = typeof window !== 'undefined' && window.location.hostname === 'saquettepj.github.io' ? '/home-port' : '';
+const basePath = typeof window !== 'undefined' && window.location.hostname === 'saquettepj.github.io' ? '/portifolio' : '';
 
 interface Technology {
   img: string;
