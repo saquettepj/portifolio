@@ -54,6 +54,7 @@ jobs:
           node-version: "20"
           cache: ${{ steps.detect-package-manager.outputs.manager }}
       - name: Setup Pages
+        id: pages # <-- ADICIONADO ID AQUI
         uses: actions/configure-pages@v5
       - name: Restore cache
         uses: actions/cache@v4
@@ -67,6 +68,15 @@ jobs:
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
+
+      # --- NOVO STEP ADICIONADO AQUI ---
+      - name: Log environment variables
+        run: |
+          echo "NODE_ENV (atual): $NODE_ENV"
+          echo "Base Path (output do configure-pages): ${{ steps.pages.outputs.base_path }}"
+          echo "NEXT_CONFIG_BASE_PATH (usado pelo next build): $NEXT_CONFIG_BASE_PATH"
+      # --- FIM DO NOVO STEP ---
+
       - name: Build with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
       - name: Upload artifact
