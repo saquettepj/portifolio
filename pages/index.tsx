@@ -15,7 +15,7 @@ interface Project {
   description: string;
 }
 
-const baseImageUrl = process.env.NODE_ENV === 'production' ? '/portifolio' : ''
+const baseImageUrl = ''
 console.log(process.env.NODE_ENV)
 
 const technologies: Technology[] = [
