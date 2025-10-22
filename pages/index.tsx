@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight, ChevronDown } from 'lucide-react';
-import Image from 'next/image';
 
 interface Technology {
   img: string;
@@ -227,43 +226,43 @@ export default function Home() {
 
   const projects: Project[] = [
     {
-      img: `${baseImageUrl}/images/dj.png`,
+      img: `${baseImageUrl}/dj.png`,
       ref: 'https://saquettepj.github.io/DJ-app/',
       name: 'Modificação em plataforma de DJ',
       description: 'Melhoria em plataforma de musica gerada por inteligência artificial.'
     },
     {
-      img: `${baseImageUrl}/images/foursales.png`,
+      img: `${baseImageUrl}/foursales.png`,
       ref: 'https://www.foursales.com.br/candidatos',
       name: 'FourSales - Desenvolvedor Fullstack',
       description: 'Desenvolvimento frontend com React/Redux, focado em componentes reutilizáveis e UI/UX.'
     },
     {
-      img: `${baseImageUrl}/images/analise.png`,
+      img: `${baseImageUrl}/analise.png`,
       ref: 'https://saquettepj.github.io/AI-static-report/',
       name: 'Analise de IA Generativa',
       description: 'Uma analise desenvolvida para empresa parceira, consultoria na aquisição de serviços de IA generativa.'
     },
     {
-      img: `${baseImageUrl}/images/saas.png`,
+      img: `${baseImageUrl}/saas.png`,
       ref: 'https://github.com/saquettepj',
       name: 'Sistema Micro-SaaS B2B',
       description: 'Plataforma full-stack para gestão de ordens de serviço e vendas (React, NestJS, GCP).'
     },
     {
-      img: `${baseImageUrl}/images/n8n.png`,
+      img: `${baseImageUrl}/n8n.png`,
       ref: 'https://github.com/saquettepj',
       name: 'Automações com IA (N8N)',
       description: 'Automação de processos (web scraping, agentes de busca) com N8N e IA para o mercado financeiro.'
     },
     {
-      img: `${baseImageUrl}/images/chat.png`,
+      img: `${baseImageUrl}/chat.png`,
       ref: 'https://github.com/saquettepj',
       name: 'Chatbot Agente com IA Generativa',
       description: 'Chat com IA generativa com acesso a banco de dados vetorial e API de busca informações em documentos.'
     },
     {
-      img: `${baseImageUrl}/images/ia.png`,
+      img: `${baseImageUrl}/ia.png`,
       ref: 'https://github.com/saquettepj',
       name: 'API para Modelo de IA Preditivo',
       description: 'API em Python para servir modelo de IA treinado para predição de valores contínuos.'
@@ -543,8 +542,7 @@ export default function Home() {
                   >
                     <div className="w-80 h-96 bg-gray-900 rounded-2xl shadow-2xl border-4 border-gray-700 relative">
                       <div className="w-full h-full rounded-xl border-2 border-gray-700 overflow-hidden">
-                        <Image
-                          fill
+                        <img
                           src={project.img}
                           alt={project.name}
                           className="w-full h-full object-cover"
