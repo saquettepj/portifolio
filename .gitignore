@@ -36,6 +36,11 @@ ehthumbs.db
 build/
 out/
 
+# Next.js
+.next/
+.next/*
+!.next/static/
+
 # Cache
 .cache/
 .parcel-cache/

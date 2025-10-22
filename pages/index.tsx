@@ -208,7 +208,6 @@ const technologies: Technology[] = [
 // Array de projetos será definido dentro do componente
 
 export default function Home() {
-  const [basePath, setBasePath] = useState('');
   const [hoveredTech, setHoveredTech] = useState<number | null>(null);
   const [currentProject, setCurrentProject] = useState(1);
   const [hoveredProject, setHoveredProject] = useState(false);
@@ -222,59 +221,51 @@ export default function Home() {
   const techScrollerRef = useRef<HTMLDivElement>(null);
   const [techScroll, setTechScroll] = useState({ atStart: true, atEnd: false });
 
-  // Array de projetos com basePath dinâmico
+  // Array de projetos - usando basePath estático
   const projects: Project[] = [
     {
-      img: `${basePath}/images/dj.png`,
+      img: '/portifolio/images/dj.png',
       ref: 'https://saquettepj.github.io/DJ-app/',
       name: 'Modificação em plataforma de DJ',
       description: 'Melhoria em plataforma de musica gerada por inteligência artificial.'
     },
     {
-      img: `${basePath}/images/foursales.png`,
+      img: '/portifolio/images/foursales.png',
       ref: 'https://www.foursales.com.br/candidatos',
       name: 'FourSales - Desenvolvedor Fullstack',
       description: 'Desenvolvimento frontend com React/Redux, focado em componentes reutilizáveis e UI/UX.'
     },
     {
-      img: `${basePath}/images/analise.png`,
+      img: '/portifolio/images/analise.png',
       ref: 'https://saquettepj.github.io/AI-static-report/',
       name: 'Analise de IA Generativa',
       description: 'Uma analise desenvolvida para empresa parceira, consultoria na aquisição de serviços de IA generativa.'
     },
     {
-      img: `${basePath}/images/saas.png`,
+      img: '/portifolio/images/saas.png',
       ref: 'https://github.com/saquettepj',
       name: 'Sistema Micro-SaaS B2B',
       description: 'Plataforma full-stack para gestão de ordens de serviço e vendas (React, NestJS, GCP).'
     },
     {
-      img: `${basePath}/images/n8n.png`,
+      img: '/portifolio/images/n8n.png',
       ref: 'https://github.com/saquettepj',
       name: 'Automações com IA (N8N)',
       description: 'Automação de processos (web scraping, agentes de busca) com N8N e IA para o mercado financeiro.'
     },
     {
-      img: `${basePath}/images/chat.png`,
+      img: '/portifolio/images/chat.png',
       ref: 'https://github.com/saquettepj',
       name: 'Chatbot Agente com IA Generativa',
       description: 'Chat com IA generativa com acesso a banco de dados vetorial e API de busca informações em documentos.'
     },
     {
-      img: `${basePath}/images/ia.png`,
+      img: '/portifolio/images/ia.png',
       ref: 'https://github.com/saquettepj',
       name: 'API para Modelo de IA Preditivo',
       description: 'API em Python para servir modelo de IA treinado para predição de valores contínuos.'
     }
   ];
-
-  useEffect(() => {
-    // Define o basePath baseado no hostname
-    if (typeof window !== 'undefined') {
-      const isGitHubPages = window.location.hostname === 'saquettepj.github.io';
-      setBasePath(isGitHubPages ? '/portifolio' : '');
-    }
-  }, []);
 
   useEffect(() => {
     const scrollProjects = () => {
