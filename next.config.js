@@ -1,12 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
-  trailingSlash: true,
+  distDir: 'dist',
   images: { unoptimized: true },
-  // Para domínio personalizado: sem basePath (raiz)
-  basePath: '',
-  assetPrefix: '',
-  distDir: 'out',
 }
 
 module.exports = nextConfig
