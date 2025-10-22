@@ -5,7 +5,6 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "build:custom-domain": "USE_BASE_PATH= next build",
     "start": "next start",
     "lint": "next lint",
     "export": "next build && next export"

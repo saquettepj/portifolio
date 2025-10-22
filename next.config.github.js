@@ -3,9 +3,9 @@ const nextConfig = {
   output: 'export',
   trailingSlash: true,
   images: { unoptimized: true },
-  // Para domínio personalizado: sem basePath (raiz)
-  basePath: '',
-  assetPrefix: '',
+  // Para GitHub Pages: com basePath
+  basePath: '/portifolio',
+  assetPrefix: '/portifolio/',
   distDir: 'out',
 }
 
