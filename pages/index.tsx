@@ -288,6 +288,12 @@ export default function Home() {
       ref: 'https://github.com/saquettepj',
       name: 'API para Modelo de IA Preditivo',
       description: 'Desenvolvimento de API (Python) para Produção de Modelo Preditivo (MLOps)\nImplementação de uma API robusta em Python (FastAPI/Flask) para servir um modelo de machine learning treinado (regressão) para predição de valores contínuos. O projeto focou na criação de modelo com rápido processamento em CPUs para a predição em tempo mínimo.'
+    },
+    {
+      img: `${baseImageUrl}/pong.png`,
+      ref: 'https://saquettepj.github.io/PongLike/',
+      name: 'Jogo em Aplicação Web',
+      description: 'Desenvolvimento de Jogo Web Híbrido (Breakout/Roguelike) com IA Criação de um jogo web (HTML5 Canvas, JS) co-desenvolvido com IA (engenharia de prompt avançada) e validado por code review intenso e ajustes manuais. Foco na integração de mecânicas complexas e na otimização de renderização. O projeto incluiu a gestão de múltiplos estados de jogo (menu, loja, game over) e a implementação de um sistema visual utilizando partículas.'
     }
   ]
 
