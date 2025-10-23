@@ -28,7 +28,7 @@
 
 ## Visão geral
 
-Este repositório contém o portfólio pessoal do Thiago Saquette, construído com Next.js, TypeScript, Tailwind CSS e outras ferramentas modernas de front-end. Ele apresenta projetos, informações de contato e demonstrações de trabalho profissional.
+Este repositório contém o meu portfólio pessoal, construído com Next.js, TypeScript, Tailwind CSS e outras ferramentas modernas de front-end. Ele apresenta projetos, informações de contato e demonstrações de trabalho profissional.
 
 O site é responsivo, otimizado para desempenho e fácil de manter — ideal para apresentar habilidades e projetos a empregadores ou clientes.
 
