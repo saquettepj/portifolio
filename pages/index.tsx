@@ -1,7 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
 import { ChevronDown } from 'lucide-react';
 import Marquee from "react-fast-marquee";
-import * as Tooltip from '@radix-ui/react-tooltip'; // Substituído
+import * as Tooltip from '@radix-ui/react-tooltip';
+import * as Popover from '@radix-ui/react-popover'; // 1. Importar Popover
+import { useSwipeable } from 'react-swipeable'; // 2. Importar Swipeable
 
 interface Technology {
   img: string;
@@ -220,6 +222,24 @@ export default function Home() {
   const projectsSectionRef = useRef<HTMLDivElement>(null);
   const projectsTitleRef = useRef<HTMLHeadingElement>(null);
 
+  // 3. Hook para detectar se é "mobile" (tela < 768px)
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    // Media query para o breakpoint 'md' do Tailwind
+    const mediaQuery = window.matchMedia('(max-width: 768px)');
+    
+    const handleResize = (e: MediaQueryListEvent | MediaQueryList) => {
+      setIsMobile(e.matches);
+    };
+    
+    handleResize(mediaQuery); // Checa o estado inicial
+    mediaQuery.addEventListener('change', handleResize); // Adiciona listener
+    
+    return () => mediaQuery.removeEventListener('change', handleResize); // Limpa
+  }, []);
+
+
   const projects: Project[] = [
     // ... (seu array de projects completo, sem alterações)
     {
@@ -267,6 +287,12 @@ export default function Home() {
   ];
 
   useEffect(() => {
+    // 4. Desativa o auto-scroll em telas mobile
+    if (isMobile) {
+      if (projectScrollRef.current) clearInterval(projectScrollRef.current);
+      return;
+    }
+
     const scrollProjects = () => {
       if (!hoveredProject && !isAnimating) {
         handleProjectChange('right');
@@ -277,7 +303,7 @@ export default function Home() {
     return () => {
       if (projectScrollRef.current) clearInterval(projectScrollRef.current);
     };
-  }, [hoveredProject, isAnimating]);
+  }, [hoveredProject, isAnimating, isMobile]); // Adiciona isMobile como dependência
 
   useEffect(() => {
     const checkScrollHint = () => {
@@ -301,6 +327,8 @@ export default function Home() {
   }, []);
 
   const handleProjectChange = (direction: 'left' | 'right') => {
+    if (isAnimating) return; // Previne múltiplas animações
+    
     setIsAnimating(true);
     setCurrentProject((prev) => {
       if (direction === 'right') {
@@ -308,16 +336,26 @@ export default function Home() {
       }
       return prev === 0 ? projects.length - 1 : prev - 1;
     });
-    setTimeout(() => setIsAnimating(false), 600);
+    setTimeout(() => setIsAnimating(false), 600); // Duração da animação
   };
 
   const handleProjectClick = () => {
     window.open(projects[currentProject].ref, '_blank');
   };
 
-  const getProjectStyle = (index: number) => {
+  // 5. getProjectStyle agora aceita isMobile e ajusta os valores
+  const getProjectStyle = (index: number, isMobile: boolean) => {
     const diff = index - currentProject;
     const absPos = ((diff % projects.length) + projects.length) % projects.length;
+
+    // Valores ajustados para mobile
+    const mainTranslateX = isMobile ? 180 : 280;
+    const mainTranslateZ = isMobile ? -100 : -200;
+    const mainRotate = isMobile ? -35 : -45;
+    
+    const sideTranslateX = isMobile ? 240 : 400;
+    const sideTranslateZ = isMobile ? -200 : -350;
+    const sideRotate = isMobile ? -45 : -55;
 
     if (absPos === 0) {
       return {
@@ -328,14 +366,14 @@ export default function Home() {
     } else if (absPos === 1 || absPos === projects.length - 1) {
       const isRight = absPos === 1;
       return {
-        transform: `translateX(${isRight ? '280px' : '-280px'}) translateZ(-200px) rotateY(${isRight ? '-45' : '45'}deg) scale(0.8)`,
+        transform: `translateX(${isRight ? mainTranslateX : -mainTranslateX}px) translateZ(${mainTranslateZ}px) rotateY(${isRight ? mainRotate : -mainRotate}deg) scale(0.8)`,
         opacity: 0.6,
         zIndex: 20,
       };
     } else if (absPos === 2 || absPos === projects.length - 2) {
       const isRight = absPos === 2;
       return {
-        transform: `translateX(${isRight ? '400px' : '-400px'}) translateZ(-350px) rotateY(${isRight ? '-55' : '55'}deg) scale(0.6)`,
+        transform: `translateX(${isRight ? sideTranslateX : -sideTranslateX}px) translateZ(${sideTranslateZ}px) rotateY(${isRight ? sideRotate : -sideRotate}deg) scale(0.6)`,
         opacity: 0.3,
         zIndex: 10,
       };
@@ -347,12 +385,23 @@ export default function Home() {
     };
   };
 
+  // 6. Handlers para o swipe (arraste)
+  const swipeHandlers = useSwipeable({
+    onSwipedLeft: () => handleProjectChange('right'),
+    onSwipedRight: () => handleProjectChange('left'),
+    trackMouse: false // Desativa swipe por mouse, apenas toque
+  });
+
   return (
-    // 1. Envolva todo o seu retorno com o Tooltip.Provider
+    // Envolva o app com o Tooltip.Provider (para desktop)
     <Tooltip.Provider>
       <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white">
-        <div className="max-w-7xl mx-auto px-4 py-20 sm:px-6 lg:px-8">
-          <section className="text-center mb-24 h-[28rem] flex flex-col justify-center items-center">
+        {/* 7. Ajuste de padding responsivo */}
+        <div className="max-w-7xl mx-auto px-4 py-16 md:py-20 sm:px-6 lg:px-8">
+          
+          {/* 8. Ajuste de altura e padding responsivo */}
+          <section className="text-center mb-16 md:mb-24 h-auto md:h-[28rem] flex flex-col justify-center items-center">
+            {/* 9. Ajuste de texto responsivo (já estava bom) */}
             <h1 className="heading-safe text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-gray-200 to-gray-400 bg-clip-text text-transparent">
               Thiago José Fagundes Saquette
             </h1>
@@ -362,59 +411,93 @@ export default function Home() {
             </p>
           </section>
 
-          <section className="mb-32">
+          <section className="mb-24 md:mb-32">
             <h3 className="text-4xl sm:text-5xl font-bold mb-12 text-center text-gray-200">Conhecimento em</h3>
 
-            {/* Este div aplica a máscara transparente nas bordas */}
             <div className="[mask-image:linear-gradient(to_right,transparent_0%,black_10%,black_90%,transparent_100%)]">
-              
               <Marquee
                 pauseOnHover={true}
-                speed={30} // Ajuste a velocidade se necessário
-                gradient={false} 
+                speed={30}
+                gradient={false}
               >
                 {technologies.map((tech, index) => {
+                  const key = `${tech.name}-${index}`;
+                  
+                  // 10. Lógica para o Trigger
+                  // No Desktop: onClick abre o link
+                  // No Mobile: onClick é undefined (o Popover.Trigger assume)
+                  const triggerDiv = (
+                    <div
+                      className="relative inline-block align-top group"
+                      onClick={!isMobile ? () => window.open(tech.ref, '_blank') : undefined}
+                    >
+                      <div className="w-24 h-24 bg-gray-800 rounded-xl p-4 flex items-center justify-center cursor-pointer transition-all hover:scale-125 hover:bg-gray-700 hover:shadow-lg hover:shadow-gray-500/20">
+                        <img
+                          src={tech.img}
+                          alt={tech.name}
+                          className="w-full h-full object-contain"
+                        />
+                      </div>
+                    </div>
+                  );
+
                   return (
-                    // ***** A MUDANÇA ESTÁ AQUI *****
-                    // Trocado de py-10 para pt-4 pb-10.
-                    // Isso alinha o ícone no topo e dá espaço ABAIXO para a sombra.
-                    <div className="px-4 pt-4 pb-10" key={`${tech.name}-${index}`}>
-                      <Tooltip.Root delayDuration={150}>
-                        <Tooltip.Trigger asChild>
-                          <div
-                            className="relative inline-block align-top group"
-                            onClick={() => window.open(tech.ref, '_blank')}
-                          >
-                            <div className="w-24 h-24 bg-gray-800 rounded-xl p-4 flex items-center justify-center cursor-pointer transition-all hover:scale-125 hover:bg-gray-700 hover:shadow-lg hover:shadow-gray-500/20">
-                              <img
-                                src={tech.img}
-                                alt={tech.name}
-                                className="w-full h-full object-contain"
+                    // Container do item com espaçamento
+                    <div className="px-4 pt-4 pb-10" key={key}>
+                      {isMobile ? (
+                        // 11. Em telas MOBILE, usa Popover (clique para abrir, clique fora para fechar)
+                        <Popover.Root>
+                          <Popover.Trigger asChild>{triggerDiv}</Popover.Trigger>
+                          <Popover.Portal>
+                            <Popover.Content
+                              side="top"
+                              align="center"
+                              sideOffset={8}
+                              className="z-50 px-4 py-2 bg-gray-900 rounded-lg shadow-xl border border-gray-600 outline-none"
+                            >
+                              <p className="text-sm font-semibold text-gray-200">{tech.name}</p>
+                              <p className="text-xs text-gray-400 max-w-xs">{tech.description}</p>
+                              {/* Link para a tech DENTRO do popover no mobile */}
+                              <a
+                                href={tech.ref}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-sm text-blue-400 hover:underline mt-2 block"
+                              >
+                                Abrir link
+                              </a>
+                              <Popover.Arrow
+                                className="fill-gray-900"
+                                style={{ stroke: 'rgb(75 85 99)', strokeWidth: 1 }}
                               />
-                            </div>
-                          </div>
-                        </Tooltip.Trigger>
-                        <Tooltip.Portal>
-                          <Tooltip.Content
-                            side="top"
-                            align="center"
-                            sideOffset={8}
-                            className="z-50 px-4 py-2 bg-gray-900 rounded-lg shadow-xl border border-gray-600"
-                          >
-                            <p className="text-sm font-semibold text-gray-200">{tech.name}</p>
-                            <p className="text-xs text-gray-400 max-w-xs">{tech.description}</p>
-                            <Tooltip.Arrow
-                              className="fill-gray-900" 
-                              style={{ stroke: 'rgb(75 85 99)', strokeWidth: 1 }} 
-                            />
-                          </Tooltip.Content>
-                        </Tooltip.Portal>
-                      </Tooltip.Root>
+                            </Popover.Content>
+                          </Popover.Portal>
+                        </Popover.Root>
+                      ) : (
+                        // 12. Em telas DESKTOP, usa Tooltip (hover para abrir)
+                        <Tooltip.Root delayDuration={150}>
+                          <Tooltip.Trigger asChild>{triggerDiv}</Tooltip.Trigger>
+                          <Tooltip.Portal>
+                            <Tooltip.Content
+                              side="top"
+                              align="center"
+                              sideOffset={8}
+                              className="z-50 px-4 py-2 bg-gray-900 rounded-lg shadow-xl border border-gray-600"
+                            >
+                              <p className="text-sm font-semibold text-gray-200">{tech.name}</p>
+                              <p className="text-xs text-gray-400 max-w-xs">{tech.description}</p>
+                              <Tooltip.Arrow
+                                className="fill-gray-900"
+                                style={{ stroke: 'rgb(75 85 99)', strokeWidth: 1 }}
+                              />
+                            </Tooltip.Content>
+                          </Tooltip.Portal>
+                        </Tooltip.Root>
+                      )}
                     </div>
                   );
                 })}
               </Marquee>
-
             </div>
           </section>
 
@@ -422,11 +505,18 @@ export default function Home() {
             <h3 ref={projectsTitleRef} className="text-4xl sm:text-5xl font-bold mb-12 text-center text-gray-200">
               Projetos
             </h3>
-            <div className="relative h-[500px] flex items-center justify-center">
+            {/* 13. Altura responsiva para o carrossel */}
+            <div className="relative h-[400px] md:h-[500px] flex items-center justify-center">
 
-              <div className="relative w-full h-full flex items-center justify-center" style={{ perspective: '1500px' }}>
+              {/* 14. Adiciona handlers de swipe e overflow-hidden no mobile */}
+              <div
+                {...swipeHandlers}
+                className="relative w-full h-full flex items-center justify-center overflow-hidden md:overflow-visible"
+                style={{ perspective: '1500px' }}
+              >
                 {projects.map((project, index) => {
-                  const style = getProjectStyle(index);
+                  // 15. Passa isMobile para a função de estilo
+                  const style = getProjectStyle(index, isMobile);
                   const diff = index - currentProject;
                   const absPos = ((diff % projects.length) + projects.length) % projects.length;
                   return (
@@ -437,8 +527,9 @@ export default function Home() {
                         ...style,
                         transformStyle: 'preserve-3d',
                       }}
-                      onMouseEnter={() => index === currentProject && setHoveredProject(true)}
-                      onMouseLeave={() => index === currentProject && setHoveredProject(false)}
+                      // 16. Desativa hover de pausar no mobile
+                      onMouseEnter={!isMobile ? () => index === currentProject && setHoveredProject(true) : undefined}
+                      onMouseLeave={!isMobile ? () => index === currentProject && setHoveredProject(false) : undefined}
                       onClick={() => {
                         if (index === currentProject) {
                           handleProjectClick();
@@ -457,7 +548,8 @@ export default function Home() {
                         }
                       }}
                     >
-                      <div className="w-80 h-96 bg-gray-900 rounded-2xl shadow-2xl border-4 border-gray-700 relative">
+                      {/* 17. Tamanho responsivo dos cards */}
+                      <div className="w-64 h-80 md:w-80 md:h-96 bg-gray-900 rounded-2xl shadow-2xl border-4 border-gray-700 relative">
                         <div className="w-full h-full rounded-xl border-2 border-gray-700 overflow-hidden">
                           <img
                             src={project.img}
@@ -466,12 +558,13 @@ export default function Home() {
                           />
                         </div>
                         {index === currentProject && (
-                          <div className="absolute inset-0 rounded-2xl bg-black/80 flex flex-col items-center justify-center p-6 backdrop-blur-sm 
-                                          opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <h4 className="text-2xl font-bold mb-3 text-gray-200">
+                          // 18. Desativa o 'hover' do grupo no mobile (clique funciona)
+                          <div className={`absolute inset-0 rounded-2xl bg-black/80 flex flex-col items-center justify-center p-4 md:p-6 backdrop-blur-sm 
+                                          transition-opacity duration-300 ${isMobile ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`}>
+                            <h4 className="text-xl md:text-2xl font-bold mb-3 text-gray-200 text-center">
                               {project.name}
                             </h4>
-                            <p className="text-gray-300 text-center">
+                            <p className="text-gray-300 text-center text-sm md:text-base">
                               {project.description}
                             </p>
                           </div>
@@ -511,8 +604,6 @@ export default function Home() {
             </div>
           )}
         </div>
-        
-        {/* O antigo componente <Tooltip id="tech-tooltip" ... /> foi REMOVIDO daqui */}
       </div>
     </Tooltip.Provider>
   );
