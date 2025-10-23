@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
-import { ChevronLeft, ChevronRight, ChevronDown } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
+import Marquee from "react-fast-marquee";
+import * as Tooltip from '@radix-ui/react-tooltip'; // Substituído
 
 interface Technology {
   img: string;
@@ -19,6 +21,7 @@ const baseImageUrl = ''
 console.log(process.env.NODE_ENV)
 
 const technologies: Technology[] = [
+  // ... (seu array de technologies completo, sem alterações)
   {
     img: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg',
     ref: 'https://www.python.org/',
@@ -208,23 +211,17 @@ const technologies: Technology[] = [
 ];
 
 
-// Array de projetos será definido dentro do componente
-
 export default function Home() {
-  const [hoveredTech, setHoveredTech] = useState<number | null>(null);
   const [currentProject, setCurrentProject] = useState(1);
   const [hoveredProject, setHoveredProject] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
   const [showScrollHint, setShowScrollHint] = useState(false);
   const projectScrollRef = useRef<NodeJS.Timeout | null>(null);
-  const techContainerRef = useRef<HTMLDivElement>(null);
   const projectsSectionRef = useRef<HTMLDivElement>(null);
   const projectsTitleRef = useRef<HTMLHeadingElement>(null);
 
-  const techScrollerRef = useRef<HTMLDivElement>(null);
-  const [techScroll, setTechScroll] = useState({ atStart: true, atEnd: false });
-
   const projects: Project[] = [
+    // ... (seu array de projects completo, sem alterações)
     {
       img: `${baseImageUrl}/dj.png`,
       ref: 'https://saquettepj.github.io/DJ-app/',
@@ -303,59 +300,6 @@ export default function Home() {
     };
   }, []);
 
-  useEffect(() => {
-    const handleTechScrollState = () => {
-      if (techScrollerRef.current) {
-        const { scrollLeft, scrollWidth, clientWidth } = techScrollerRef.current;
-        const atStart = scrollLeft < 10;
-        const atEnd = (scrollWidth - scrollLeft - clientWidth) < 10;
-
-        setTechScroll({ atStart, atEnd });
-      }
-    };
-
-    handleTechScrollState();
-    const scroller = techScrollerRef.current;
-    if (scroller) {
-      scroller.addEventListener('scroll', handleTechScrollState, { passive: true });
-    }
-    window.addEventListener('resize', handleTechScrollState);
-
-    return () => {
-      if (scroller) {
-        scroller.removeEventListener('scroll', handleTechScrollState);
-      }
-      window.removeEventListener('resize', handleTechScrollState);
-    };
-  }, []);
-
-
-  const handleTechClick = (index: number) => {
-    window.open(technologies[index % technologies.length].ref, '_blank');
-  };
-
-  const handleTechScroll = (direction: 'left' | 'right') => {
-    if (techScrollerRef.current) {
-      const scrollAmount = direction === 'left'
-        ? -techScrollerRef.current.clientWidth * 0.75
-        : techScrollerRef.current.clientWidth * 0.75;
-
-      techScrollerRef.current.scrollBy({
-        left: scrollAmount,
-        behavior: 'smooth'
-      });
-
-      setTimeout(() => {
-        if (techScrollerRef.current) {
-          const { scrollLeft, scrollWidth, clientWidth } = techScrollerRef.current;
-          const atStart = scrollLeft < 10;
-          const atEnd = (scrollWidth - scrollLeft - clientWidth) < 10;
-          setTechScroll({ atStart, atEnd });
-        }
-      }, 400);
-    }
-  };
-
   const handleProjectChange = (direction: 'left' | 'right') => {
     setIsAnimating(true);
     setCurrentProject((prev) => {
@@ -404,196 +348,172 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white">
-      <div className="max-w-7xl mx-auto px-4 py-20 sm:px-6 lg:px-8">
-        <section className="text-center mb-24 h-[28rem] flex flex-col justify-center items-center">
-          <h1 className="heading-safe text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-gray-200 to-gray-400 bg-clip-text text-transparent">
-            Thiago José Fagundes Saquette
-          </h1>
-          <h2 className="heading-safe text-2xl sm:text-3xl text-gray-300 mt-8 mb-8">Desenvolvedor FullStack</h2>
-          <p className="text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto">
-            5 anos desenvolvendo com paixão
-          </p>
-        </section>
+    // 1. Envolva todo o seu retorno com o Tooltip.Provider
+    <Tooltip.Provider>
+      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white">
+        <div className="max-w-7xl mx-auto px-4 py-20 sm:px-6 lg:px-8">
+          <section className="text-center mb-24 h-[28rem] flex flex-col justify-center items-center">
+            <h1 className="heading-safe text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-gray-200 to-gray-400 bg-clip-text text-transparent">
+              Thiago José Fagundes Saquette
+            </h1>
+            <h2 className="heading-safe text-2xl sm:text-3xl text-gray-300 mt-8 mb-8">Desenvolvedor FullStack</h2>
+            <p className="text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto">
+              5 anos desenvolvendo com paixão
+            </p>
+          </section>
 
-        <section className="mb-32">
-          <h3 className="text-4xl sm:text-5xl font-bold mb-12 text-center text-gray-200">Conhecimento em</h3>
+          <section className="mb-32">
+            <h3 className="text-4xl sm:text-5xl font-bold mb-12 text-center text-gray-200">Conhecimento em</h3>
 
-          <div className="relative w-full flex items-center group">
-
-            {!techScroll.atStart && (
-              <button
-                onClick={() => handleTechScroll('left')}
-                className="absolute left-0 z-10 bg-gray-800/90 hover:bg-gray-700 p-2 rounded-full shadow-lg transition-all hover:scale-110
-                           opacity-0 group-hover:opacity-100 -translate-x-1/2"
-                aria-label="Scroll left"
-              >
-                <ChevronLeft className="w-6 h-6" />
-              </button>
-            )}
-
-            <div
-              ref={techScrollerRef}
-              className="relative w-full overflow-x-auto py-20 
-                         [mask-image:linear-gradient(to_right,transparent_0%,black_10%,black_90%,transparent_100%)]
-                         [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-              onScroll={() => {
-                if (techScrollerRef.current) {
-                  const { scrollLeft, scrollWidth, clientWidth } = techScrollerRef.current;
-                  const atStart = scrollLeft < 10;
-                  const atEnd = (scrollWidth - scrollLeft - clientWidth) < 10;
-                  setTechScroll({ atStart, atEnd });
-                }
-              }}
-            >
-              <div
-                ref={techContainerRef}
-                className="whitespace-nowrap"
+            {/* Este div aplica a máscara transparente nas bordas */}
+            <div className="[mask-image:linear-gradient(to_right,transparent_0%,black_10%,black_90%,transparent_100%)]">
+              
+              <Marquee
+                pauseOnHover={true}
+                speed={30} // Ajuste a velocidade se necessário
+                gradient={false} 
               >
                 {technologies.map((tech, index) => {
                   return (
-                    <div
-                      key={index}
-                      className="relative inline-block align-top group mr-8"
-                      onMouseEnter={() => {
-                        setHoveredTech(index);
-                      }}
-                      onMouseLeave={() => {
-                        setHoveredTech(null);
-                      }}
-                      onClick={() => handleTechClick(index)}
-                    >
-                      <div className="w-24 h-24 bg-gray-800 rounded-xl p-4 flex items-center justify-center cursor-pointer transition-all hover:scale-125 hover:bg-gray-700 hover:shadow-xl hover:shadow-gray-500/20">
-                        <img
-                          src={tech.img}
-                          alt={tech.name}
-                          className="w-full h-full object-contain"
-                        />
-                      </div>
-
-                      {hoveredTech === index && (
-                        <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-4 py-2 bg-gray-900 rounded-lg shadow-xl whitespace-nowrap z-20 border border-gray-600">
-                          <p className="text-sm font-semibold text-gray-200">{tech.name}</p>
-                          <p className="text-xs text-gray-400 max-w-xs">{tech.description}</p>
-                          <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-1">
-                            <div className="border-8 border-transparent border-t-gray-900"></div>
+                    // ***** A MUDANÇA ESTÁ AQUI *****
+                    // Trocado de py-10 para pt-4 pb-10.
+                    // Isso alinha o ícone no topo e dá espaço ABAIXO para a sombra.
+                    <div className="px-4 pt-4 pb-10" key={`${tech.name}-${index}`}>
+                      <Tooltip.Root delayDuration={150}>
+                        <Tooltip.Trigger asChild>
+                          <div
+                            className="relative inline-block align-top group"
+                            onClick={() => window.open(tech.ref, '_blank')}
+                          >
+                            <div className="w-24 h-24 bg-gray-800 rounded-xl p-4 flex items-center justify-center cursor-pointer transition-all hover:scale-125 hover:bg-gray-700 hover:shadow-lg hover:shadow-gray-500/20">
+                              <img
+                                src={tech.img}
+                                alt={tech.name}
+                                className="w-full h-full object-contain"
+                              />
+                            </div>
                           </div>
-                        </div>
-                      )}
+                        </Tooltip.Trigger>
+                        <Tooltip.Portal>
+                          <Tooltip.Content
+                            side="top"
+                            align="center"
+                            sideOffset={8}
+                            className="z-50 px-4 py-2 bg-gray-900 rounded-lg shadow-xl border border-gray-600"
+                          >
+                            <p className="text-sm font-semibold text-gray-200">{tech.name}</p>
+                            <p className="text-xs text-gray-400 max-w-xs">{tech.description}</p>
+                            <Tooltip.Arrow
+                              className="fill-gray-900" 
+                              style={{ stroke: 'rgb(75 85 99)', strokeWidth: 1 }} 
+                            />
+                          </Tooltip.Content>
+                        </Tooltip.Portal>
+                      </Tooltip.Root>
                     </div>
                   );
                 })}
+              </Marquee>
 
+            </div>
+          </section>
+
+          <section ref={projectsSectionRef} className="mb-16">
+            <h3 ref={projectsTitleRef} className="text-4xl sm:text-5xl font-bold mb-12 text-center text-gray-200">
+              Projetos
+            </h3>
+            <div className="relative h-[500px] flex items-center justify-center">
+
+              <div className="relative w-full h-full flex items-center justify-center" style={{ perspective: '1500px' }}>
+                {projects.map((project, index) => {
+                  const style = getProjectStyle(index);
+                  const diff = index - currentProject;
+                  const absPos = ((diff % projects.length) + projects.length) % projects.length;
+                  return (
+                    <div
+                      key={index}
+                      className="absolute transition-all duration-700 ease-out cursor-pointer group"
+                      style={{
+                        ...style,
+                        transformStyle: 'preserve-3d',
+                      }}
+                      onMouseEnter={() => index === currentProject && setHoveredProject(true)}
+                      onMouseLeave={() => index === currentProject && setHoveredProject(false)}
+                      onClick={() => {
+                        if (index === currentProject) {
+                          handleProjectClick();
+                          return;
+                        }
+                        
+                        setHoveredProject(true); 
+
+                        if (absPos === 1) {
+                          handleProjectChange('right');
+                          return;
+                        }
+                        if (absPos === projects.length - 1) {
+                          handleProjectChange('left');
+                          return;
+                        }
+                      }}
+                    >
+                      <div className="w-80 h-96 bg-gray-900 rounded-2xl shadow-2xl border-4 border-gray-700 relative">
+                        <div className="w-full h-full rounded-xl border-2 border-gray-700 overflow-hidden">
+                          <img
+                            src={project.img}
+                            alt={project.name}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                        {index === currentProject && (
+                          <div className="absolute inset-0 rounded-2xl bg-black/80 flex flex-col items-center justify-center p-6 backdrop-blur-sm 
+                                          opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <h4 className="text-2xl font-bold mb-3 text-gray-200">
+                              {project.name}
+                            </h4>
+                            <p className="text-gray-300 text-center">
+                              {project.description}
+                            </p>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             </div>
 
-            {!techScroll.atEnd && (
-              <button
-                onClick={() => handleTechScroll('right')}
-                className="absolute right-0 z-10 bg-gray-800/90 hover:bg-gray-700 p-2 rounded-full shadow-lg transition-all hover:scale-110
-                           opacity-0 group-hover:opacity-100 translate-x-1/2"
-                aria-label="Scroll right"
-              >
-                <ChevronRight className="w-6 h-6" />
-              </button>
-            )}
-
-          </div>
-        </section>
-
-        <section ref={projectsSectionRef} className="mb-16">
-          <h3 ref={projectsTitleRef} className="text-4xl sm:text-5xl font-bold mb-12 text-center text-gray-200">
-            Projetos
-          </h3>
-          <div className="relative h-[500px] flex items-center justify-center">
-
-            <div className="relative w-full h-full flex items-center justify-center" style={{ perspective: '1500px' }}>
-              {projects.map((project, index) => {
-                const style = getProjectStyle(index);
-                const diff = index - currentProject;
-                const absPos = ((diff % projects.length) + projects.length) % projects.length;
-                return (
-                  <div
-                    key={index}
-                    className="absolute transition-all duration-700 ease-out cursor-pointer group"
-                    style={{
-                      ...style,
-                      transformStyle: 'preserve-3d',
-                    }}
-                    onMouseEnter={() => index === currentProject && setHoveredProject(true)}
-                    onMouseLeave={() => index === currentProject && setHoveredProject(false)}
-                    onClick={() => {
-                      if (index === currentProject) {
-                        handleProjectClick();
-                        return;
-                      }
-                      
-                      setHoveredProject(true); 
-
-                      if (absPos === 1) {
-                        handleProjectChange('right');
-                        return;
-                      }
-                      if (absPos === projects.length - 1) {
-                        handleProjectChange('left');
-                        return;
-                      }
-                    }}
-                  >
-                    <div className="w-80 h-96 bg-gray-900 rounded-2xl shadow-2xl border-4 border-gray-700 relative">
-                      <div className="w-full h-full rounded-xl border-2 border-gray-700 overflow-hidden">
-                        <img
-                          src={project.img}
-                          alt={project.name}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                      {index === currentProject && (
-                        <div className="absolute inset-0 rounded-2xl bg-black/80 flex flex-col items-center justify-center p-6 backdrop-blur-sm 
-                                       opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                          <h4 className="text-2xl font-bold mb-3 text-gray-200">
-                            {project.name}
-                          </h4>
-                          <p className="text-gray-300 text-center">
-                            {project.description}
-                          </p>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                );
-              })}
+            <div className="mt-8 flex justify-center gap-2">
+              {projects.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => {
+                    setHoveredProject(false); 
+                    setCurrentProject(index);
+                  }}
+                  className={`w-3 h-3 rounded-full transition-all ${
+                    index === currentProject
+                      ? 'bg-gray-200 w-8'
+                      : 'bg-gray-600 hover:bg-gray-500'
+                  }`}
+                  aria-label={`Go to project ${index + 1}`}
+                />
+              ))}
             </div>
-          </div>
+          </section>
 
-          <div className="mt-8 flex justify-center gap-2">
-            {projects.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => {
-                  setHoveredProject(false); 
-                  setCurrentProject(index);
-                }}
-                className={`w-3 h-3 rounded-full transition-all ${
-                  index === currentProject
-                    ? 'bg-gray-200 w-8'
-                    : 'bg-gray-600 hover:bg-gray-500'
-                }`}
-                aria-label={`Go to project ${index + 1}`}
-              />
-            ))}
-          </div>
-        </section>
-
-        {showScrollHint && (
-          <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50">
-            <div className="flex flex-col items-center text-gray-400">
-              <span className="text-sm mb-2">Role para ver mais</span>
-              <ChevronDown className="w-6 h-6 scroll-hint" />
+          {showScrollHint && (
+            <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50">
+              <div className="flex flex-col items-center text-gray-400">
+                <span className="text-sm mb-2">Role para ver mais</span>
+                <ChevronDown className="w-6 h-6 scroll-hint" />
+              </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
+        
+        {/* O antigo componente <Tooltip id="tech-tooltip" ... /> foi REMOVIDO daqui */}
       </div>
-    </div>
+    </Tooltip.Provider>
   );
 }
