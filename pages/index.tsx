@@ -315,6 +315,10 @@ export default function Home() {
         const rect = projectsTitleRef.current.getBoundingClientRect();
         const isTitleBelowScreen = rect.top >= window.innerHeight;
         setShowScrollHint(isTitleBelowScreen);
+        
+        if (isMobile && rect.top <= window.innerHeight && rect.top >= -100) {
+          setOpenPopover(null);
+        }
       } else if (window.scrollY === 0) {
         setShowScrollHint(true);
       }
@@ -328,7 +332,7 @@ export default function Home() {
       window.removeEventListener('scroll', checkScrollHint);
       window.removeEventListener('resize', checkScrollHint);
     };
-  }, []);
+  }, [isMobile]);
 
   const handleProjectChange = (direction: 'left' | 'right') => {
     if (isAnimating) return;
