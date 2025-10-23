@@ -222,6 +222,15 @@ export default function Home() {
   const projectsTitleRef = useRef<HTMLHeadingElement>(null);
 
   const [isMobile, setIsMobile] = useState(false);
+  
+  // Estados para controle da esteira arrastável no mobile
+  const [treadmillPosition, setTreadmillPosition] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragStart, setDragStart] = useState(0);
+  const [dragCurrent, setDragCurrent] = useState(0);
+  const [dragOffset, setDragOffset] = useState(0);
+  const [openPopover, setOpenPopover] = useState<string | null>(null);
+  const treadmillRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(max-width: 768px)');
@@ -384,6 +393,118 @@ export default function Home() {
     trackMouse: false
   });
 
+  // Handlers para arrastar a esteira no mobile
+  const handleTreadmillTouchStart = (e: React.TouchEvent) => {
+    if (!isMobile) return;
+    setIsDragging(true);
+    setDragStart(e.touches[0].clientX);
+    setDragCurrent(e.touches[0].clientX);
+    setDragOffset(0);
+    setOpenPopover(null); // Fechar tooltip ao começar a arrastar
+  };
+
+  const handleTreadmillTouchMove = (e: React.TouchEvent) => {
+    if (!isMobile || !isDragging) return;
+    e.preventDefault();
+    const currentX = e.touches[0].clientX;
+    setDragCurrent(currentX);
+    
+    const offset = currentX - dragStart;
+    const techWidth = 128;
+    const totalWidth = technologies.length * techWidth;
+    const maxPosition = 0;
+    const minPosition = -totalWidth;
+    
+    // Limitar o offset durante o arraste também
+    const limitedOffset = Math.max(
+      minPosition - treadmillPosition,
+      Math.min(maxPosition - treadmillPosition, offset)
+    );
+    
+    setDragOffset(limitedOffset);
+  };
+
+  const handleTreadmillTouchEnd = () => {
+    if (!isMobile || !isDragging) return;
+    setIsDragging(false);
+    
+    const sensitivity = 0.8; // Ajuste a sensibilidade do arraste
+    
+    if (Math.abs(dragOffset) > 10) { // Threshold mínimo para considerar como arraste
+      let newPosition = treadmillPosition + (dragOffset * sensitivity);
+      
+      // Calcular limites baseado no número de tecnologias
+      const techWidth = 128; // 24 * 4 + 16 (w-24 + px-4) + padding
+      const totalWidth = technologies.length * techWidth;
+      const maxPosition = 0; // Não pode ir além do início
+      const minPosition = -totalWidth; // Não pode ir além do final
+      
+      // Aplicar limites
+      newPosition = Math.max(minPosition, Math.min(maxPosition, newPosition));
+      
+      setTreadmillPosition(newPosition);
+    }
+    
+    setDragStart(0);
+    setDragCurrent(0);
+    setDragOffset(0);
+  };
+
+  const handleTreadmillMouseDown = (e: React.MouseEvent) => {
+    if (!isMobile) return;
+    setIsDragging(true);
+    setDragStart(e.clientX);
+    setDragCurrent(e.clientX);
+    setDragOffset(0);
+    setOpenPopover(null); // Fechar tooltip ao começar a arrastar
+  };
+
+  const handleTreadmillMouseMove = (e: React.MouseEvent) => {
+    if (!isMobile || !isDragging) return;
+    const currentX = e.clientX;
+    setDragCurrent(currentX);
+    
+    const offset = currentX - dragStart;
+    const techWidth = 128;
+    const totalWidth = technologies.length * techWidth;
+    const maxPosition = 0;
+    const minPosition = -totalWidth;
+    
+    // Limitar o offset durante o arraste também
+    const limitedOffset = Math.max(
+      minPosition - treadmillPosition,
+      Math.min(maxPosition - treadmillPosition, offset)
+    );
+    
+    setDragOffset(limitedOffset);
+  };
+
+  const handleTreadmillMouseUp = () => {
+    if (!isMobile || !isDragging) return;
+    setIsDragging(false);
+    
+    const sensitivity = 0.8;
+    
+    if (Math.abs(dragOffset) > 10) {
+      let newPosition = treadmillPosition + (dragOffset * sensitivity);
+      
+      // Calcular limites baseado no número de tecnologias
+      const techWidth = 128; // 24 * 4 + 16 (w-24 + px-4) + padding
+      const totalWidth = technologies.length * techWidth;
+      const maxPosition = 0; // Não pode ir além do início
+      const minPosition = -totalWidth; // Não pode ir além do final
+      
+      // Aplicar limites
+      newPosition = Math.max(minPosition, Math.min(maxPosition, newPosition));
+      
+      setTreadmillPosition(newPosition);
+    }
+    
+    setDragStart(0);
+    setDragCurrent(0);
+    setDragOffset(0);
+  };
+
   return (
     <Tooltip.Provider>
       {/* 1. Container principal é bg-black */}
@@ -407,35 +528,61 @@ export default function Home() {
             {/* ***** MUDANÇA 2: Padding-bottom aumentado para criar mais espaço de fade ***** */}
             <section className="pb-64 md:pb-80">
               <h3 className="text-4xl sm:text-5xl font-bold mb-12 text-center text-gray-200">Conhecimento em</h3>
+              
+              {/* Indicador para mobile */}
+              {isMobile && (
+                <div className="text-center mb-2 mt-2">
+                  <p className="text-sm text-gray-400 flex items-center justify-center gap-2">
+                    <span>←</span>
+                    <span>Arraste para explorar</span>
+                    <span>→</span>
+                  </p>
+                </div>
+              )}
 
-              <div className="[mask-image:linear-gradient(to_right,transparent_0%,black_10%,black_90%,transparent_100%)]">
-                <Marquee
-                  pauseOnHover={true}
-                  speed={50}
-                  gradient={false}
-                >
-                  {technologies.map((tech, index) => {
-                    const key = `${tech.name}-${index}`;
-                    
-                    const triggerDiv = (
-                      <div
-                        className="relative inline-block align-top group"
-                        onClick={!isMobile ? () => window.open(tech.ref, '_blank') : undefined}
-                      >
-                        <div className="w-24 h-24 bg-gray-800 rounded-xl p-4 flex items-center justify-center cursor-pointer transition-all hover:scale-125 hover:bg-gray-700 hover:shadow-lg hover:shadow-gray-500/20">
-                          <img
-                            src={tech.img}
-                            alt={tech.name}
-                            className="w-full h-full object-contain"
-                          />
+              <div className="[mask-image:linear-gradient(to_right,transparent_0%,black_10%,black_90%,transparent_100%)] overflow-hidden">
+                {isMobile ? (
+                  <div
+                    ref={treadmillRef}
+                    className="flex transition-transform duration-300 ease-out"
+                    style={{ 
+                      transform: `translateX(${treadmillPosition + dragOffset}px)`,
+                      cursor: isDragging ? 'grabbing' : 'grab'
+                    }}
+                    onTouchStart={handleTreadmillTouchStart}
+                    onTouchMove={handleTreadmillTouchMove}
+                    onTouchEnd={handleTreadmillTouchEnd}
+                    onMouseDown={handleTreadmillMouseDown}
+                    onMouseMove={handleTreadmillMouseMove}
+                    onMouseUp={handleTreadmillMouseUp}
+                    onMouseLeave={handleTreadmillMouseUp}
+                  >
+                    {/* Renderizar tecnologias duas vezes para loop infinito */}
+                    {[...technologies, ...technologies].map((tech, index) => {
+                      const key = `${tech.name}-${index}`;
+                      
+                      const triggerDiv = (
+                        <div className="relative inline-block align-top group">
+                          <div className="w-24 h-24 bg-gray-800 rounded-xl p-4 flex items-center justify-center cursor-pointer transition-all hover:scale-125 hover:bg-gray-700 hover:shadow-lg hover:shadow-gray-500/20">
+                            <img
+                              src={tech.img}
+                              alt={tech.name}
+                              className="w-full h-full object-contain"
+                            />
+                          </div>
                         </div>
-                      </div>
-                    );
+                      );
 
-                    return (
-                      <div className="px-4 pt-4 pb-10" key={key}>
-                        {isMobile ? (
-                          <Popover.Root>
+                      return (
+                        <div className="px-4 pt-4 pb-10" key={key}>
+                          <Popover.Root 
+                            open={openPopover === key}
+                            onOpenChange={(open) => {
+                              if (!isDragging) {
+                                setOpenPopover(open ? key : null);
+                              }
+                            }}
+                          >
                             <Popover.Trigger asChild>{triggerDiv}</Popover.Trigger>
                             <Popover.Portal>
                               <Popover.Content
@@ -452,7 +599,7 @@ export default function Home() {
                                   rel="noopener noreferrer"
                                   className="text-sm text-blue-400 hover:underline mt-2 block"
                                 >
-                                  Abrir link
+                                  Acesse o link
                                 </a>
                                 <Popover.Arrow
                                   className="fill-gray-900"
@@ -461,7 +608,36 @@ export default function Home() {
                               </Popover.Content>
                             </Popover.Portal>
                           </Popover.Root>
-                        ) : (
+                        </div>
+                      );
+                    })}
+                  </div>
+                ) : (
+                  <Marquee
+                    pauseOnHover={true}
+                    speed={50}
+                    gradient={false}
+                  >
+                    {technologies.map((tech, index) => {
+                      const key = `${tech.name}-${index}`;
+                      
+                      const triggerDiv = (
+                        <div
+                          className="relative inline-block align-top group"
+                          onClick={() => window.open(tech.ref, '_blank')}
+                        >
+                          <div className="w-24 h-24 bg-gray-800 rounded-xl p-4 flex items-center justify-center cursor-pointer transition-all hover:scale-125 hover:bg-gray-700 hover:shadow-lg hover:shadow-gray-500/20">
+                            <img
+                              src={tech.img}
+                              alt={tech.name}
+                              className="w-full h-full object-contain"
+                            />
+                          </div>
+                        </div>
+                      );
+
+                      return (
+                        <div className="px-4 pt-4 pb-10" key={key}>
                           <Tooltip.Root delayDuration={150}>
                             <Tooltip.Trigger asChild>{triggerDiv}</Tooltip.Trigger>
                             <Tooltip.Portal>
@@ -480,11 +656,11 @@ export default function Home() {
                               </Tooltip.Content>
                             </Tooltip.Portal>
                           </Tooltip.Root>
-                        )}
-                      </div>
-                    );
-                  })}
-                </Marquee>
+                        </div>
+                      );
+                    })}
+                  </Marquee>
+                )}
               </div>
             </section>
             
@@ -503,12 +679,23 @@ export default function Home() {
               <h3 ref={projectsTitleRef} className="text-4xl sm:text-5xl font-bold mb-12 text-center text-gray-200">
                 Projetos
               </h3>
+              
               <div className="relative h-[400px] md:h-[500px] flex items-center justify-center">
+                
+                {/* Indicador para mobile */}
+                {isMobile && (
+                  <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 z-10">
+                    <p className="text-sm text-gray-400 flex items-center justify-center gap-2">
+                      <span>↓</span>
+                      <span>Toque para ver detalhes</span>
+                    </p>
+                  </div>
+                )}
 
                 <div
                   {...swipeHandlers}
                   className="relative w-full h-full flex items-center justify-center overflow-hidden md:overflow-visible"
-                  style={{ perspective: '1500px' }}
+                  style={{ perspective: '1500px', marginTop: '2px' }}
                 >
                   {projects.map((project, index) => {
                     const style = getProjectStyle(index, isMobile);
