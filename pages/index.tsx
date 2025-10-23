@@ -398,7 +398,7 @@ export default function Home() {
               <h1 className="heading-safe text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-gray-200 to-gray-400 bg-clip-text text-transparent">
                 Thiago José Fagundes Saquette
               </h1>
-              <h2 className="heading-safe text-2xl sm:text-3xl text-gray-300 mt-8 mb-8">Desenvolvedor FullStack</h2>
+              <h2 className="heading-safe text-2xl sm:text-3xl text-gray-300 mt-8 mb-1">Desenvolvedor FullStack</h2>
               <p className="text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto">
                 5 anos desenvolvendo com paixão
               </p>
@@ -551,12 +551,12 @@ export default function Home() {
                             />
                           </div>
                           {index === currentProject && (
-                            <div className={`absolute inset-0 rounded-2xl bg-black/80 flex flex-col items-center justify-center p-4 md:p-6 backdrop-blur-sm 
+                            <div className={`absolute inset-0 rounded-xl bg-black/80 flex flex-col items-center justify-center p-4 md:p-6 backdrop-blur-sm 
                                             transition-opacity duration-300 ${isMobile ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`}>
                               <h4 className="text-xl md:text-xl font-bold mb-3 text-gray-200 text-center">
                                 {project.name}
                               </h4>
-                              <p className="text-gray-300 text-center text-sm md:text-base">
+                              <p className="text-gray-300 text-center text-xs md:text-base">
                                 {project.description}
                               </p>
                             </div>
