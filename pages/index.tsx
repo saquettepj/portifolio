@@ -4,6 +4,7 @@ import Marquee from "react-fast-marquee";
 import * as Tooltip from '@radix-ui/react-tooltip';
 import * as Popover from '@radix-ui/react-popover';
 import { useSwipeable } from 'react-swipeable';
+import { Linkedin, Github, Mail, MessageCircle } from 'lucide-react';
 
 interface Technology {
   img: string;
@@ -223,7 +224,6 @@ export default function Home() {
 
   const [isMobile, setIsMobile] = useState(false);
   
-  // Estados para controle da esteira arrastável no mobile
   const [treadmillPosition, setTreadmillPosition] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState(0);
@@ -393,14 +393,13 @@ export default function Home() {
     trackMouse: false
   });
 
-  // Handlers para arrastar a esteira no mobile
   const handleTreadmillTouchStart = (e: React.TouchEvent) => {
     if (!isMobile) return;
     setIsDragging(true);
     setDragStart(e.touches[0].clientX);
     setDragCurrent(e.touches[0].clientX);
     setDragOffset(0);
-    setOpenPopover(null); // Fechar tooltip ao começar a arrastar
+    setOpenPopover(null);
   };
 
   const handleTreadmillTouchMove = (e: React.TouchEvent) => {
@@ -415,7 +414,6 @@ export default function Home() {
     const maxPosition = 0;
     const minPosition = -totalWidth;
     
-    // Limitar o offset durante o arraste também
     const limitedOffset = Math.max(
       minPosition - treadmillPosition,
       Math.min(maxPosition - treadmillPosition, offset)
@@ -428,18 +426,16 @@ export default function Home() {
     if (!isMobile || !isDragging) return;
     setIsDragging(false);
     
-    const sensitivity = 0.8; // Ajuste a sensibilidade do arraste
+    const sensitivity = 0.8;
     
-    if (Math.abs(dragOffset) > 10) { // Threshold mínimo para considerar como arraste
+    if (Math.abs(dragOffset) > 10) {
       let newPosition = treadmillPosition + (dragOffset * sensitivity);
       
-      // Calcular limites baseado no número de tecnologias
-      const techWidth = 128; // 24 * 4 + 16 (w-24 + px-4) + padding
+      const techWidth = 128;
       const totalWidth = technologies.length * techWidth;
-      const maxPosition = 0; // Não pode ir além do início
-      const minPosition = -totalWidth; // Não pode ir além do final
+      const maxPosition = 0;
+      const minPosition = -totalWidth;
       
-      // Aplicar limites
       newPosition = Math.max(minPosition, Math.min(maxPosition, newPosition));
       
       setTreadmillPosition(newPosition);
@@ -456,7 +452,7 @@ export default function Home() {
     setDragStart(e.clientX);
     setDragCurrent(e.clientX);
     setDragOffset(0);
-    setOpenPopover(null); // Fechar tooltip ao começar a arrastar
+    setOpenPopover(null);
   };
 
   const handleTreadmillMouseMove = (e: React.MouseEvent) => {
@@ -470,7 +466,6 @@ export default function Home() {
     const maxPosition = 0;
     const minPosition = -totalWidth;
     
-    // Limitar o offset durante o arraste também
     const limitedOffset = Math.max(
       minPosition - treadmillPosition,
       Math.min(maxPosition - treadmillPosition, offset)
@@ -488,13 +483,11 @@ export default function Home() {
     if (Math.abs(dragOffset) > 10) {
       let newPosition = treadmillPosition + (dragOffset * sensitivity);
       
-      // Calcular limites baseado no número de tecnologias
-      const techWidth = 128; // 24 * 4 + 16 (w-24 + px-4) + padding
+      const techWidth = 128;
       const totalWidth = technologies.length * techWidth;
-      const maxPosition = 0; // Não pode ir além do início
-      const minPosition = -totalWidth; // Não pode ir além do final
+      const maxPosition = 0;
+      const minPosition = -totalWidth;
       
-      // Aplicar limites
       newPosition = Math.max(minPosition, Math.min(maxPosition, newPosition));
       
       setTreadmillPosition(newPosition);
@@ -507,15 +500,12 @@ export default function Home() {
 
   return (
     <Tooltip.Provider>
-      {/* 1. Container principal é bg-black */}
       <div className="min-h-screen bg-black text-white">
 
-        {/* 2. ZONA SUPERIOR (CINZA) */}
-        {/* ***** MUDANÇA 1: Fade mais suave (de 85% para 70%) ***** */}
         <div className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 [mask-image:linear-gradient(to_bottom,black_70%,transparent_100%)]">
           <div className="max-w-7xl mx-auto px-4 pt-16 md:pt-20 sm:px-6 lg:px-8">
             
-            <section className="text-center mb-16 md:mb-24 h-auto md:h-[28rem] flex flex-col justify-center items-center">
+            <section className="text-center md:mb-24 h-auto md:h-[28rem] flex flex-col justify-center items-center">
               <h1 className="heading-safe text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-gray-200 to-gray-400 bg-clip-text text-transparent">
                 Thiago José Fagundes Saquette
               </h1>
@@ -525,11 +515,9 @@ export default function Home() {
               </p>
             </section>
 
-            {/* ***** MUDANÇA 2: Padding-bottom aumentado para criar mais espaço de fade ***** */}
             <section className="pb-64 md:pb-80">
               <h3 className="text-4xl sm:text-5xl font-bold mb-12 text-center text-gray-200">Conhecimento em</h3>
               
-              {/* Indicador para mobile */}
               {isMobile && (
                 <div className="text-center mb-2 mt-2">
                   <p className="text-sm text-gray-400 flex items-center justify-center gap-2">
@@ -557,7 +545,6 @@ export default function Home() {
                     onMouseUp={handleTreadmillMouseUp}
                     onMouseLeave={handleTreadmillMouseUp}
                   >
-                    {/* Renderizar tecnologias duas vezes para loop infinito */}
                     {[...technologies, ...technologies].map((tech, index) => {
                       const key = `${tech.name}-${index}`;
                       
@@ -666,31 +653,24 @@ export default function Home() {
             
           </div>
         </div>
-        {/* --- FIM DA ZONA SUPERIOR (CINZA) --- */}
         
 
-        {/* 4. ZONA DE PROJETOS (PRETA) */}
-        {/* ***** MUDANÇA 3: Margem negativa aumentada para sobrepor mais ***** */}
         <div className="bg-black -mt-80 md:-mt-96">
-          <div className="max-w-7xl mx-auto px-4 pb-16 md:pb-20 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto px-4 pb-0 sm:px-6 lg:px-8">
 
-            {/* ***** MUDANÇA 4: Padding-top aumentado para mover o título "Projetos" para baixo ***** */}
-            <section ref={projectsSectionRef} className="mb-16 pt-48 md:pt-64">
+            <section ref={projectsSectionRef} className=" pt-48 md:pt-64">
               <h3 ref={projectsTitleRef} className="text-4xl sm:text-5xl font-bold mb-12 text-center text-gray-200">
                 Projetos
               </h3>
               
               <div className="relative h-[400px] md:h-[500px] flex items-center justify-center">
                 
-                {/* Indicador para mobile */}
-                {isMobile && (
-                  <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 z-10">
-                    <p className="text-sm text-gray-400 flex items-center justify-center gap-2">
-                      <span>↓</span>
-                      <span>Toque para ver detalhes</span>
-                    </p>
-                  </div>
-                )}
+                <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 z-10">
+                  <p className="text-sm text-gray-400 flex items-center justify-center gap-2">
+                    <span>↓</span>
+                    <span>Toque para ver detalhes</span>
+                  </p>
+                </div>
 
                 <div
                   {...swipeHandlers}
@@ -776,7 +756,50 @@ export default function Home() {
             
           </div>
         </div>
-        {/* --- FIM DA ZONA DE PROJETOS (PRETA) --- */}
+
+        <div className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 [mask-image:linear-gradient(to_top,black_70%,transparent_100%)]">
+          <div className="max-w-7xl mx-auto px-4 py-16 md:py-20 sm:px-6 lg:px-8">
+            
+            <section className="text-center">
+              <h3 className="text-4xl sm:text-5xl font-bold mb-12 mt-40 text-gray-200">Contato</h3>
+              
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+                <button
+                  onClick={() => window.open('https://www.linkedin.com/in/saquette/', '_blank')}
+                  className="flex flex-col items-center p-6 bg-gray-800 rounded-xl hover:bg-gray-700 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-gray-500/20 group"
+                >
+                  <Linkedin className="w-8 h-8 text-blue-400 mb-3 group-hover:text-blue-300 transition-colors" />
+                  <span className="text-gray-200 font-medium">LinkedIn</span>
+                </button>
+
+                <button
+                  onClick={() => window.open('https://github.com/saquettepj', '_blank')}
+                  className="flex flex-col items-center p-6 bg-gray-800 rounded-xl hover:bg-gray-700 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-gray-500/20 group"
+                >
+                  <Github className="w-8 h-8 text-gray-300 mb-3 group-hover:text-white transition-colors" />
+                  <span className="text-gray-200 font-medium">GitHub</span>
+                </button>
+
+                <button
+                  onClick={() => window.open('mailto:thigo.saquettepj@gmail.com?subject=Contato%20via%20Portfolio', '_blank')}
+                  className="flex flex-col items-center p-6 bg-gray-800 rounded-xl hover:bg-gray-700 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-gray-500/20 group"
+                >
+                  <Mail className="w-8 h-8 text-red-400 mb-3 group-hover:text-red-300 transition-colors" />
+                  <span className="text-gray-200 font-medium">Gmail</span>
+                </button>
+
+                <button
+                  onClick={() => window.open('https://wa.me/5541992473450?text=Olá%20Thiago!%20Vim%20através%20do%20seu%20portfolio.', '_blank')}
+                  className="flex flex-col items-center p-6 bg-gray-800 rounded-xl hover:bg-gray-700 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-gray-500/20 group"
+                >
+                  <MessageCircle className="w-8 h-8 text-green-400 mb-3 group-hover:text-green-300 transition-colors" />
+                  <span className="text-gray-200 font-medium">WhatsApp</span>
+                </button>
+              </div>
+            </section>
+            
+          </div>
+        </div>
 
         {showScrollHint && (
           <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50">
