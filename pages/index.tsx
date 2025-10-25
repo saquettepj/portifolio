@@ -293,7 +293,7 @@ export default function Home() {
       img: `${baseImageUrl}/pong.png`,
       ref: 'https://saquettepj.github.io/PongLike/',
       name: 'Jogo em Aplicação Web',
-      description: 'Desenvolvimento de Jogo Web Híbrido (Breakout/Roguelike) com IA Criação de um jogo web (HTML5 Canvas, JS) co-desenvolvido com IA (engenharia de prompt avançada) e validado por code review intenso e ajustes manuais. Foco na integração de mecânicas complexas e na otimização de renderização. O projeto incluiu a gestão de múltiplos estados de jogo (menu, loja, game over) e a implementação de um sistema visual utilizando partículas.'
+      description: 'Desenvolvimento de Jogo Web Híbrido (Breakout/Roguelike) em (HTML5 Canvas, JS) co-desenvolvido com IA (engenharia de prompt avançada) e validado por code review intenso e ajustes manuais. Foco na integração de mecânicas complexas e na otimização de renderização. O projeto incluiu a gestão de múltiplos estados de jogo (menu, loja, game over) e a implementação de um sistema visual utilizando partículas.'
     }
   ]
 
