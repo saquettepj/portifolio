@@ -1,5 +1,84 @@
 import '../src/index.css'
+import Head from 'next/head'
 
 export default function App({ Component, pageProps }: any) {
-  return <Component {...pageProps} />
+  return (
+    <>
+      <Head>
+        {/* Meta tags básicas */}
+        <title>Thiago Saquette - Desenvolvedor FullStack | Python, React, TypeScript</title>
+        <meta name="description" content="Desenvolvedor FullStack brasileiro com 5 anos de experiência. Especialista em Python, React, TypeScript, Node.js, AWS e Google Cloud. Projetos com IA, SaaS B2B e automações." />
+        <meta name="keywords" content="desenvolvedor brasil, desenvolvedor fullstack, python developer, react developer, typescript, nodejs, aws, google cloud, machine learning, ia, automação, saas, b2b, desenvolvedor brasileiro, programador brasil" />
+        <meta name="author" content="Thiago José Fagundes Saquette" />
+        <meta name="robots" content="index, follow" />
+        <meta name="language" content="pt-BR" />
+        <meta name="geo.region" content="BR" />
+        <meta name="geo.country" content="Brasil" />
+        
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://thiagosaquette.org/" />
+        <meta property="og:title" content="Thiago Saquette - Desenvolvedor FullStack | Python, React, TypeScript" />
+        <meta property="og:description" content="Desenvolvedor FullStack brasileiro com 5 anos de experiência. Especialista em Python, React, TypeScript, Node.js, AWS e Google Cloud." />
+        <meta property="og:image" content="https://thiagosaquette.org/images/og-image.png" />
+        <meta property="og:locale" content="pt_BR" />
+        <meta property="og:site_name" content="Thiago Saquette Portfolio" />
+        
+        {/* Twitter */}
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://thiagosaquette.org/" />
+        <meta property="twitter:title" content="Thiago Saquette - Desenvolvedor FullStack" />
+        <meta property="twitter:description" content="Desenvolvedor FullStack brasileiro com 5 anos de experiência. Especialista em Python, React, TypeScript, Node.js, AWS e Google Cloud." />
+        <meta property="twitter:image" content="https://thiagosaquette.org/images/og-image.png" />
+        
+        {/* Canonical URL */}
+        <link rel="canonical" href="https://thiagosaquette.org/" />
+        
+        {/* Favicon */}
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        
+        {/* Structured Data */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "Thiago José Fagundes Saquette",
+            "jobTitle": "Desenvolvedor FullStack",
+            "description": "Desenvolvedor FullStack brasileiro com 5 anos de experiência em Python, React, TypeScript, Node.js, AWS e Google Cloud",
+            "url": "https://thiagosaquette.org/",
+            "sameAs": [
+              "https://www.linkedin.com/in/saquette/",
+              "https://github.com/saquettepj"
+            ],
+            "knowsAbout": [
+              "Python",
+              "React",
+              "TypeScript",
+              "JavaScript",
+              "Node.js",
+              "AWS",
+              "Google Cloud Platform",
+              "Machine Learning",
+              "Inteligência Artificial",
+              "Desenvolvimento Web",
+              "Desenvolvimento Mobile",
+              "Automação",
+              "SaaS",
+              "B2B"
+            ],
+            "address": {
+              "@type": "PostalAddress",
+              "addressCountry": "BR"
+            },
+            "email": "thigo.saquettepj@gmail.com",
+            "telephone": "+55-41-99247-3450"
+          })}
+        </script>
+      </Head>
+      <Component {...pageProps} />
+    </>
+  )
 }
