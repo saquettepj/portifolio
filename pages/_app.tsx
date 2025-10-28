@@ -36,10 +36,22 @@ export default function App({ Component, pageProps }: any) {
         <link rel="canonical" href="https://thiagosaquette.org/" />
         
         {/* Favicon */}
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="57x57" href="/favicon-57x57.png" />
+        <link rel="icon" type="image/png" sizes="180x180" href="/favicon-180x180.png" />
+        <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
+        <link rel="icon" type="image/png" sizes="310x310" href="/favicon-310x310.png" />
+        
+        {/* Apple Touch Icons */}
+        <link rel="apple-touch-icon" sizes="57x57" href="/favicon-57x57.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180x180.png" />
+        
+        {/* Android Chrome Icons */}
+        <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
+        
+        {/* Fallback */}
+        <link rel="shortcut icon" href="/favicon-32x32.png" />
         
         
         {/* Preconnect para performance */}
