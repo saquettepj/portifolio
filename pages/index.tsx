@@ -519,9 +519,9 @@ export default function Home() {
               <h1 className="heading-safe text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-gray-200 to-gray-400 bg-clip-text text-transparent">
                 Thiago José Fagundes Saquette
               </h1>
-              <h2 className="heading-safe text-2xl sm:text-3xl text-gray-300 mt-8 mb-1">Desenvolvedor FullStack</h2>
+              <h2 className="heading-safe text-2xl sm:text-3xl text-gray-300 mt-8 mb-1">Desenvolvedor FullStack Brasileiro</h2>
               <p className="text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto">
-                5 anos desenvolvendo com paixão
+                5 anos desenvolvendo com paixão - Especialista em Python, React e TypeScript
               </p>
             </section>
 

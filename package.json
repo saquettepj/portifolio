@@ -12,6 +12,7 @@
   "dependencies": {
     "@radix-ui/react-popover": "^1.1.15",
     "@radix-ui/react-tooltip": "^1.2.8",
+    "gtag": "^1.0.1",
     "lucide-react": "^0.263.1",
     "next": "^14.0.0",
     "react": "^18.2.0",

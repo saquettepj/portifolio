@@ -1,5 +1,6 @@
 import '../src/index.css'
 import Head from 'next/head'
+import Script from 'next/script'
 
 export default function App({ Component, pageProps }: any) {
   return (
@@ -40,6 +41,17 @@ export default function App({ Component, pageProps }: any) {
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
         
+        
+        {/* Preconnect para performance */}
+        <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+        <link rel="preconnect" href="https://cdn.brandfetch.io" />
+        <link rel="preconnect" href="https://icon.icepanel.io" />
+        
+        {/* DNS Prefetch */}
+        <link rel="dns-prefetch" href="//www.linkedin.com" />
+        <link rel="dns-prefetch" href="//github.com" />
+        <link rel="dns-prefetch" href="//wa.me" />
+        
         {/* Structured Data */}
         <script type="application/ld+json">
           {JSON.stringify({
@@ -78,6 +90,28 @@ export default function App({ Component, pageProps }: any) {
           })}
         </script>
       </Head>
+      
+      {/* Google Analytics 4 */}
+      <Script
+        strategy="afterInteractive"
+        src="https://www.googletagmanager.com/gtag/js?id=G-39MJ7RH569"
+      />
+      <Script
+        id="google-analytics"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-39MJ7RH569', {
+              page_title: document.title,
+              page_location: window.location.href,
+            });
+          `,
+        }}
+      />
+      
       <Component {...pageProps} />
     </>
   )
