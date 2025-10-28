@@ -521,7 +521,7 @@ export default function Home() {
               </h1>
               <h2 className="heading-safe text-2xl sm:text-3xl text-gray-300 mt-8 mb-1">Desenvolvedor FullStack Brasileiro</h2>
               <p className="text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto">
-                5 anos desenvolvendo com paixão - Especialista em Python, React e TypeScript
+                5 anos desenvolvendo com paixão - Experiência sólida em React, TypeScript, NodeJS e Python
               </p>
             </section>
 
