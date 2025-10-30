@@ -1,6 +1,6 @@
 import '../src/index.css'
 import Head from 'next/head'
-import Script from 'next/script'
+import Script from 'next/script' // Mantido para Google Analytics
 
 export default function App({ Component, pageProps }: any) {
   return (
@@ -64,11 +64,9 @@ export default function App({ Component, pageProps }: any) {
         <link rel="dns-prefetch" href="//github.com" />
         <link rel="dns-prefetch" href="//wa.me" />
         
-        {/* Structured Data via next/script (teste) */}
-        <Script
-          id="schema-person"
+        {/* Structured Data - JSON-LD */}
+        <script
           type="application/ld+json"
-          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
@@ -78,9 +76,28 @@ export default function App({ Component, pageProps }: any) {
               description:
                 "Desenvolvedor FullStack brasileiro com 5 anos de experiência em Python, React, TypeScript, Node.js, AWS e Google Cloud",
               url: "https://thiagosaquette.org/",
+              image: "https://thiagosaquette.org/images/og-image.png",
+              birthDate: "1997-09-17",
+              gender: "Male",
               sameAs: [
                 "https://www.linkedin.com/in/saquette/",
                 "https://github.com/saquettepj",
+              ],
+              alumniOf: [
+                {
+                  "@type": "EducationalOrganization",
+                  name: "Universidade Tecnológica Federal do Paraná",
+                }
+              ],
+              knowsLanguage: [
+                {
+                  "@type": "Language",
+                  name: "Portuguese"
+                },
+                {
+                  "@type": "Language",
+                  name: "English"
+                }
               ],
               knowsAbout: [
                 "Python",
@@ -100,6 +117,8 @@ export default function App({ Component, pageProps }: any) {
               ],
               address: {
                 "@type": "PostalAddress",
+                addressLocality: "Curitiba",
+                addressRegion: "Paraná",
                 addressCountry: "BR",
               },
               email: "thigo.saquettepj@gmail.com",
@@ -108,10 +127,8 @@ export default function App({ Component, pageProps }: any) {
           }}
         />
 
-        <Script
-          id="schema-website"
+        <script
           type="application/ld+json"
-          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
@@ -123,6 +140,85 @@ export default function App({ Component, pageProps }: any) {
                 "@type": "SearchAction",
                 target: "https://thiagosaquette.org/?q={search_term_string}",
                 "query-input": "required name=search_term_string"
+              }
+            })
+          }}
+        />
+
+        {/* BreadcrumbList - Gerador de rich results visuais */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                {
+                  "@type": "ListItem",
+                  position: 1,
+                  name: "Portfolio",
+                  item: "https://thiagosaquette.org/"
+                }
+              ]
+            })
+          }}
+        />
+
+        {/* Organization - Ajuda com SEO e conhecimento estruturado */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "THIAGO JOSE FAGUNDES SAQUETTE",
+              url: "https://thiagosaquette.org/",
+              logo: "https://thiagosaquette.org/images/og-image.png",
+              description: "Desenvolvedor FullStack especializado em Python, React, TypeScript, Node.js, AWS e Google Cloud",
+              contactPoint: {
+                "@type": "ContactPoint",
+                telephone: "+55-41-99247-3450",
+                contactType: "Professional",
+                email: "thigo.saquettepj@gmail.com",
+                areaServed: "BR",
+                availableLanguage: ["Portuguese", "English"]
+              },
+              sameAs: [
+                "https://www.linkedin.com/in/saquette/",
+                "https://github.com/saquettepj"
+              ]
+            })
+          }}
+        />
+
+        {/* ProfilePage - Específico para rich results visuais em portfólios */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "ProfilePage",
+              mainEntity: {
+                "@type": "Person",
+                name: "Thiago José Fagundes Saquette",
+                jobTitle: "Desenvolvedor FullStack",
+                image: "https://thiagosaquette.org/images/og-image.png",
+                url: "https://thiagosaquette.org/",
+                sameAs: [
+                  "https://www.linkedin.com/in/saquette/",
+                  "https://github.com/saquettepj"
+                ],
+                knowsAbout: [
+                  "Python",
+                  "React",
+                  "TypeScript",
+                  "JavaScript",
+                  "Node.js",
+                  "AWS",
+                  "Google Cloud Platform",
+                  "Machine Learning",
+                  "Inteligência Artificial"
+                ]
               }
             })
           }}
