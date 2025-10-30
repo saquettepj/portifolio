@@ -64,10 +64,11 @@ export default function App({ Component, pageProps }: any) {
         <link rel="dns-prefetch" href="//github.com" />
         <link rel="dns-prefetch" href="//wa.me" />
         
-        {/* Structured Data (usar <script> padrão para JSON-LD) */}
-        <script
+        {/* Structured Data via next/script (teste) */}
+        <Script
           id="schema-person"
           type="application/ld+json"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
@@ -104,6 +105,26 @@ export default function App({ Component, pageProps }: any) {
               email: "thigo.saquettepj@gmail.com",
               telephone: "+55-41-99247-3450",
             }),
+          }}
+        />
+
+        <Script
+          id="schema-website"
+          type="application/ld+json"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              name: "Thiago Saquette - Desenvolvedor FullStack",
+              url: "https://thiagosaquette.org/",
+              inLanguage: "pt-BR",
+              potentialAction: {
+                "@type": "SearchAction",
+                target: "https://thiagosaquette.org/?q={search_term_string}",
+                "query-input": "required name=search_term_string"
+              }
+            })
           }}
         />
       </Head>
