@@ -145,25 +145,6 @@ export default function App({ Component, pageProps }: any) {
           }}
         />
 
-        {/* BreadcrumbList - Gerador de rich results visuais */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "BreadcrumbList",
-              itemListElement: [
-                {
-                  "@type": "ListItem",
-                  position: 1,
-                  name: "Portfolio",
-                  item: "https://thiagosaquette.org/"
-                }
-              ]
-            })
-          }}
-        />
-
         {/* Organization - Ajuda com SEO e conhecimento estruturado */}
         <script
           type="application/ld+json"
