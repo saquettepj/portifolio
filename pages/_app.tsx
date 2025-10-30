@@ -64,43 +64,48 @@ export default function App({ Component, pageProps }: any) {
         <link rel="dns-prefetch" href="//github.com" />
         <link rel="dns-prefetch" href="//wa.me" />
         
-        {/* Structured Data */}
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Person",
-            "name": "Thiago José Fagundes Saquette",
-            "jobTitle": "Desenvolvedor FullStack",
-            "description": "Desenvolvedor FullStack brasileiro com 5 anos de experiência em Python, React, TypeScript, Node.js, AWS e Google Cloud",
-            "url": "https://thiagosaquette.org/",
-            "sameAs": [
-              "https://www.linkedin.com/in/saquette/",
-              "https://github.com/saquettepj"
-            ],
-            "knowsAbout": [
-              "Python",
-              "React",
-              "TypeScript",
-              "JavaScript",
-              "Node.js",
-              "AWS",
-              "Google Cloud Platform",
-              "Machine Learning",
-              "Inteligência Artificial",
-              "Desenvolvimento Web",
-              "Desenvolvimento Mobile",
-              "Automação",
-              "SaaS",
-              "B2B"
-            ],
-            "address": {
-              "@type": "PostalAddress",
-              "addressCountry": "BR"
-            },
-            "email": "thigo.saquettepj@gmail.com",
-            "telephone": "+55-41-99247-3450"
-          })}
-        </script>
+        {/* Structured Data (usar <script> padrão para JSON-LD) */}
+        <script
+          id="schema-person"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              name: "Thiago José Fagundes Saquette",
+              jobTitle: "Desenvolvedor FullStack",
+              description:
+                "Desenvolvedor FullStack brasileiro com 5 anos de experiência em Python, React, TypeScript, Node.js, AWS e Google Cloud",
+              url: "https://thiagosaquette.org/",
+              sameAs: [
+                "https://www.linkedin.com/in/saquette/",
+                "https://github.com/saquettepj",
+              ],
+              knowsAbout: [
+                "Python",
+                "React",
+                "TypeScript",
+                "JavaScript",
+                "Node.js",
+                "AWS",
+                "Google Cloud Platform",
+                "Machine Learning",
+                "Inteligência Artificial",
+                "Desenvolvimento Web",
+                "Desenvolvimento Mobile",
+                "Automação",
+                "SaaS",
+                "B2B",
+              ],
+              address: {
+                "@type": "PostalAddress",
+                addressCountry: "BR",
+              },
+              email: "thigo.saquettepj@gmail.com",
+              telephone: "+55-41-99247-3450",
+            }),
+          }}
+        />
       </Head>
       
       {/* Google Analytics 4 */}
