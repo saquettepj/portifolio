@@ -8,6 +8,13 @@ const nextConfig = {
   assetPrefix: '',
   images: { unoptimized: true },
   trailingSlash: true,
+  // Otimizações de compilação
+  swcMinify: true,
+  compiler: {
+    removeConsole: isProduction ? {
+      exclude: ['error', 'warn'],
+    } : false,
+  },
 }
 
 module.exports = nextConfig

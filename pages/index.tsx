@@ -1,10 +1,13 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { ChevronDown } from 'lucide-react';
-import Marquee from "react-fast-marquee";
-import * as Tooltip from '@radix-ui/react-tooltip';
-import * as Popover from '@radix-ui/react-popover';
+import dynamic from 'next/dynamic';
 import { useSwipeable } from 'react-swipeable';
 import { Linkedin, Github, Mail, MessageCircle } from 'lucide-react';
+import * as Tooltip from '@radix-ui/react-tooltip';
+import * as Popover from '@radix-ui/react-popover';
+
+// Dynamic import apenas para Marquee que é pesado e usado só em desktop
+const Marquee = dynamic(() => import("react-fast-marquee"), { ssr: false });
 
 interface Technology {
   img: string;
@@ -21,7 +24,6 @@ interface Project {
 }
 
 const baseImageUrl = ''
-console.log(process.env.NODE_ENV)
 
 const technologies: Technology[] = [
   {
@@ -297,6 +299,19 @@ export default function Home() {
     }
   ]
 
+  const handleProjectChange = useCallback((direction: 'left' | 'right') => {
+    if (isAnimating) return;
+    
+    setIsAnimating(true);
+    setCurrentProject((prev) => {
+      if (direction === 'right') {
+        return (prev + 1) % projects.length;
+      }
+      return prev === 0 ? projects.length - 1 : prev - 1;
+    });
+    setTimeout(() => setIsAnimating(false), 600);
+  }, [isAnimating, projects.length]);
+
   useEffect(() => {
     if (isMobile) {
       if (projectScrollRef.current) clearInterval(projectScrollRef.current);
@@ -313,49 +328,50 @@ export default function Home() {
     return () => {
       if (projectScrollRef.current) clearInterval(projectScrollRef.current);
     };
-  }, [hoveredProject, isAnimating, isMobile]);
+  }, [hoveredProject, isAnimating, isMobile, handleProjectChange]);
+
+  // Otimizado com useCallback para evitar recriação e throttle para reduzir execuções
+  const checkScrollHint = useCallback(() => {
+    if (projectsTitleRef.current) {
+      const rect = projectsTitleRef.current.getBoundingClientRect();
+      const isTitleBelowScreen = rect.top >= window.innerHeight;
+      setShowScrollHint(isTitleBelowScreen);
+      
+      if (isMobile && rect.top <= window.innerHeight && rect.top >= -100) {
+        setOpenPopover(null);
+      }
+    } else if (window.scrollY === 0) {
+      setShowScrollHint(true);
+    }
+  }, [isMobile]);
 
   useEffect(() => {
-    const checkScrollHint = () => {
-      if (projectsTitleRef.current) {
-        const rect = projectsTitleRef.current.getBoundingClientRect();
-        const isTitleBelowScreen = rect.top >= window.innerHeight;
-        setShowScrollHint(isTitleBelowScreen);
-        
-        if (isMobile && rect.top <= window.innerHeight && rect.top >= -100) {
-          setOpenPopover(null);
-        }
-      } else if (window.scrollY === 0) {
-        setShowScrollHint(true);
+    // Throttle para reduzir execuções e evitar tarefas longas
+    let ticking = false;
+    
+    const throttledCheckScrollHint = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          checkScrollHint();
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 
     checkScrollHint();
-    window.addEventListener('scroll', checkScrollHint, { passive: true });
-    window.addEventListener('resize', checkScrollHint);
+    window.addEventListener('scroll', throttledCheckScrollHint, { passive: true });
+    window.addEventListener('resize', throttledCheckScrollHint, { passive: true });
 
     return () => {
-      window.removeEventListener('scroll', checkScrollHint);
-      window.removeEventListener('resize', checkScrollHint);
+      window.removeEventListener('scroll', throttledCheckScrollHint);
+      window.removeEventListener('resize', throttledCheckScrollHint);
     };
-  }, [isMobile]);
+  }, [checkScrollHint]);
 
-  const handleProjectChange = (direction: 'left' | 'right') => {
-    if (isAnimating) return;
-    
-    setIsAnimating(true);
-    setCurrentProject((prev) => {
-      if (direction === 'right') {
-        return (prev + 1) % projects.length;
-      }
-      return prev === 0 ? projects.length - 1 : prev - 1;
-    });
-    setTimeout(() => setIsAnimating(false), 600);
-  };
-
-  const handleProjectClick = () => {
+  const handleProjectClick = useCallback(() => {
     window.open(projects[currentProject].ref, '_blank');
-  };
+  }, [projects, currentProject]);
 
   const getProjectStyle = (index: number, isMobile: boolean) => {
     const diff = index - currentProject;
