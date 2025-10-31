@@ -24,8 +24,11 @@ export default function App({ Component, pageProps }: any) {
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://thiagosaquette.org/" />
         <meta property="og:title" content="Thiago Saquette - Desenvolvedor FullStack | Python, React, TypeScript" />
-        <meta property="og:description" content="Desenvolvedor FullStack brasileiro com 5 anos de experiência. Especialista em Python, React, TypeScript, Node.js, AWS e Google Cloud." />
-        <meta property="og:image" content="https://thiagosaquette.org/images/og-image.png" />
+        <meta property="og:description" content="Desenvolvedor FullStack brasileiro com 5 anos de experiência. Experiência em Python, React, TypeScript, Node.js, AWS e Google Cloud." />
+        <meta property="og:image" content="https://thiagosaquette.org/portifolio-img.jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:type" content="image/jpeg" />
         <meta property="og:locale" content="pt_BR" />
         <meta property="og:site_name" content="Thiago Saquette Portfolio" />
         
@@ -33,8 +36,8 @@ export default function App({ Component, pageProps }: any) {
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://thiagosaquette.org/" />
         <meta property="twitter:title" content="Thiago Saquette - Desenvolvedor FullStack" />
-        <meta property="twitter:description" content="Desenvolvedor FullStack brasileiro com 5 anos de experiência. Especialista em Python, React, TypeScript, Node.js, AWS e Google Cloud." />
-        <meta property="twitter:image" content="https://thiagosaquette.org/images/og-image.png" />
+        <meta property="twitter:description" content="Desenvolvedor FullStack brasileiro com 5 anos de experiência. Experiêcia em Python, React, TypeScript, Node.js, AWS e Google Cloud." />
+        <meta property="twitter:image" content="https://thiagosaquette.org/portifolio-img.jpg" />
         
         {/* Canonical URL */}
         <link rel="canonical" href="https://thiagosaquette.org/" />
@@ -80,7 +83,6 @@ export default function App({ Component, pageProps }: any) {
               description:
                 "Desenvolvedor FullStack brasileiro com 5 anos de experiência em Python, React, TypeScript, Node.js, AWS e Google Cloud",
               url: "https://thiagosaquette.org/",
-              image: "https://thiagosaquette.org/images/og-image.png",
               birthDate: "1997-09-17",
               gender: "Male",
               sameAs: [
@@ -158,7 +160,6 @@ export default function App({ Component, pageProps }: any) {
               "@type": "Organization",
               name: "THIAGO JOSE FAGUNDES SAQUETTE",
               url: "https://thiagosaquette.org/",
-              logo: "https://thiagosaquette.org/images/og-image.png",
               description: "Desenvolvedor FullStack especializado em Python, React, TypeScript, Node.js, AWS e Google Cloud",
               contactPoint: {
                 "@type": "ContactPoint",
@@ -187,7 +188,6 @@ export default function App({ Component, pageProps }: any) {
                 "@type": "Person",
                 name: "Thiago José Fagundes Saquette",
                 jobTitle: "Desenvolvedor FullStack",
-                image: "https://thiagosaquette.org/images/og-image.png",
                 url: "https://thiagosaquette.org/",
                 sameAs: [
                   "https://www.linkedin.com/in/saquette/",
