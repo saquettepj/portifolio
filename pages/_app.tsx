@@ -64,10 +64,6 @@ export default function App({ Component, pageProps }: any) {
         {/* Fallback */}
         <link rel="shortcut icon" href="/favicon-32x32.png" />
         
-        {/* Preload de imagem OG crítica para LCP */}
-        {/* fetchPriority="high" testar na proxima versao do react*/}
-        <link rel="preload" as="image" href="/portifolio-img.jpg"/>
-        
         {/* Preconnect para performance - apenas domínios críticos e usados na primeira renderização */}
         <link rel="preconnect" href="https://cdn.jsdelivr.net" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://cdn.brandfetch.io" />
