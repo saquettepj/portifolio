@@ -22,9 +22,13 @@ export default function App({ Component, pageProps }: any) {
         
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
+        {/* URLs com www e sem www para compatibilidade */}
+        <meta property="og:url" content="https://www.thiagosaquette.org/" />
         <meta property="og:url" content="https://thiagosaquette.org/" />
         <meta property="og:title" content="Thiago Saquette - Desenvolvedor FullStack | Python, React, TypeScript" />
         <meta property="og:description" content="Desenvolvedor FullStack brasileiro com 5 anos de experiência. Experiência em Python, React, TypeScript, Node.js, AWS e Google Cloud." />
+        {/* Imagens OG para ambos os domínios */}
+        <meta property="og:image" content="https://www.thiagosaquette.org/portifolio-img.jpg" />
         <meta property="og:image" content="https://thiagosaquette.org/portifolio-img.jpg" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
@@ -34,13 +38,16 @@ export default function App({ Component, pageProps }: any) {
         
         {/* Twitter */}
         <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://www.thiagosaquette.org/" />
         <meta property="twitter:url" content="https://thiagosaquette.org/" />
         <meta property="twitter:title" content="Thiago Saquette - Desenvolvedor FullStack" />
         <meta property="twitter:description" content="Desenvolvedor FullStack brasileiro com 5 anos de experiência. Experiêcia em Python, React, TypeScript, Node.js, AWS e Google Cloud." />
+        <meta property="twitter:image" content="https://www.thiagosaquette.org/portifolio-img.jpg" />
         <meta property="twitter:image" content="https://thiagosaquette.org/portifolio-img.jpg" />
         
-        {/* Canonical URL */}
-        <link rel="canonical" href="https://thiagosaquette.org/" />
+        {/* Canonical URL - preferência para www */}
+        <link rel="canonical" href="https://www.thiagosaquette.org/" />
+        <link rel="alternate" href="https://thiagosaquette.org/" />
         
         {/* Favicon */}
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
@@ -82,7 +89,7 @@ export default function App({ Component, pageProps }: any) {
               jobTitle: "Desenvolvedor FullStack",
               description:
                 "Desenvolvedor FullStack brasileiro com 5 anos de experiência em Python, React, TypeScript, Node.js, AWS e Google Cloud",
-              url: "https://thiagosaquette.org/",
+              url: "https://www.thiagosaquette.org/",
               birthDate: "1997-09-17",
               gender: "Male",
               sameAs: [
@@ -140,11 +147,11 @@ export default function App({ Component, pageProps }: any) {
               "@context": "https://schema.org",
               "@type": "WebSite",
               name: "Thiago Saquette - Desenvolvedor FullStack",
-              url: "https://thiagosaquette.org/",
+              url: "https://www.thiagosaquette.org/",
               inLanguage: "pt-BR",
               potentialAction: {
                 "@type": "SearchAction",
-                target: "https://thiagosaquette.org/?q={search_term_string}",
+                target: "https://www.thiagosaquette.org/?q={search_term_string}",
                 "query-input": "required name=search_term_string"
               }
             })
@@ -159,7 +166,7 @@ export default function App({ Component, pageProps }: any) {
               "@context": "https://schema.org",
               "@type": "Organization",
               name: "THIAGO JOSE FAGUNDES SAQUETTE",
-              url: "https://thiagosaquette.org/",
+              url: "https://www.thiagosaquette.org/",
               description: "Desenvolvedor FullStack especializado em Python, React, TypeScript, Node.js, AWS e Google Cloud",
               contactPoint: {
                 "@type": "ContactPoint",
@@ -188,7 +195,7 @@ export default function App({ Component, pageProps }: any) {
                 "@type": "Person",
                 name: "Thiago José Fagundes Saquette",
                 jobTitle: "Desenvolvedor FullStack",
-                url: "https://thiagosaquette.org/",
+                url: "https://www.thiagosaquette.org/",
                 sameAs: [
                   "https://www.linkedin.com/in/saquette/",
                   "https://github.com/saquettepj"
