@@ -6,11 +6,15 @@ export default function App({ Component, pageProps }: any) {
   return (
     <>
       <Head>
+        <meta charSet="utf-8" />
         {/* Meta tags básicas */}
         <title>Thiago Saquette - Desenvolvedor FullStack | Python, React, TypeScript</title>
         <meta name="description" content="Desenvolvedor FullStack brasileiro com 5 anos de experiência. Especialista em Python, React, TypeScript, Node.js, AWS e Google Cloud. Projetos com IA, SaaS B2B e automações." />
         <meta name="keywords" content="desenvolvedor brasil, desenvolvedor fullstack, python developer, react developer, typescript, nodejs, aws, google cloud, machine learning, ia, automação, saas, b2b, desenvolvedor brasileiro, programador brasil" />
         <meta name="author" content="Thiago José Fagundes Saquette" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#000000" />
+        <meta name="color-scheme" content="dark light" />
         <meta name="robots" content="index, follow" />
         <meta name="language" content="pt-BR" />
         <meta name="geo.region" content="BR" />
