@@ -745,6 +745,7 @@ export default function Home() {
                       >
                         <div className="w-64 h-80 md:w-80 md:h-96 bg-gray-900 rounded-2xl shadow-2xl border-4 border-gray-700 relative">
                           <div className="w-full h-full rounded-xl border-2 border-gray-700 overflow-hidden">
+                            {/* fetchPriority={index === currentProject ? "high" : "auto"} testar na proxima versao do react*/}
                             <img
                               src={project.img}
                               alt={`${project.name} - ${project.description.substring(0, 60)}`}
@@ -753,7 +754,6 @@ export default function Home() {
                               className="w-full h-full object-cover"
                               loading={index === currentProject ? "eager" : "lazy"}
                               decoding="async"
-                              fetchPriority={index === currentProject ? "high" : "auto"}
                               sizes="(max-width: 768px) 256px, 320px"
                             />
                           </div>

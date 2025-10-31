@@ -15,6 +15,10 @@ const nextConfig = {
       exclude: ['error', 'warn'],
     } : false,
   },
+  // Otimizações para reduzir JavaScript legado e não usado
+  experimental: {
+    optimizePackageImports: ['@radix-ui/react-tooltip', '@radix-ui/react-popover', 'lucide-react'],
+  },
 }
 
 module.exports = nextConfig

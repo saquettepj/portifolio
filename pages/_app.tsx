@@ -64,13 +64,16 @@ export default function App({ Component, pageProps }: any) {
         {/* Fallback */}
         <link rel="shortcut icon" href="/favicon-32x32.png" />
         
+        {/* Preload de imagem OG crítica para LCP */}
+        {/* fetchPriority="high" testar na proxima versao do react*/}
+        <link rel="preload" as="image" href="/portifolio-img.jpg"/>
         
-        {/* Preconnect para performance */}
-        <link rel="preconnect" href="https://cdn.jsdelivr.net" />
-        <link rel="preconnect" href="https://cdn.brandfetch.io" />
-        <link rel="preconnect" href="https://icon.icepanel.io" />
+        {/* Preconnect para performance - apenas domínios críticos e usados na primeira renderização */}
+        <link rel="preconnect" href="https://cdn.jsdelivr.net" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://cdn.brandfetch.io" />
+        <link rel="dns-prefetch" href="https://icon.icepanel.io" />
         
-        {/* DNS Prefetch */}
+        {/* DNS Prefetch - apenas quando necessário (não crítico) */}
         <link rel="dns-prefetch" href="//www.linkedin.com" />
         <link rel="dns-prefetch" href="//github.com" />
         <link rel="dns-prefetch" href="//wa.me" />
@@ -214,14 +217,14 @@ export default function App({ Component, pageProps }: any) {
         />
       </Head>
       
-      {/* Google Analytics 4 */}
+      {/* Google Analytics 4 - Otimizado para não bloquear renderização */}
       <Script
-        strategy="afterInteractive"
+        strategy="lazyOnload"
         src="https://www.googletagmanager.com/gtag/js?id=G-39MJ7RH569"
       />
       <Script
         id="google-analytics"
-        strategy="afterInteractive"
+        strategy="lazyOnload"
         dangerouslySetInnerHTML={{
           __html: `
             window.dataLayer = window.dataLayer || [];
