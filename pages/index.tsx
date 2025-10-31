@@ -563,8 +563,12 @@ export default function Home() {
                           <div className="w-24 h-24 bg-gray-800 rounded-xl p-4 flex items-center justify-center cursor-pointer transition-all hover:scale-125 hover:bg-gray-700 hover:shadow-lg hover:shadow-gray-500/20">
                             <img
                               src={tech.img}
-                              alt={tech.name}
+                              alt={`${tech.name} - ${tech.description.substring(0, 50)}`}
+                              width="96"
+                              height="96"
                               className="w-full h-full object-contain"
+                              loading="lazy"
+                              decoding="async"
                             />
                           </div>
                         </div>
@@ -626,8 +630,12 @@ export default function Home() {
                           <div className="w-24 h-24 bg-gray-800 rounded-xl p-4 flex items-center justify-center cursor-pointer transition-all hover:scale-125 hover:bg-gray-700 hover:shadow-lg hover:shadow-gray-500/20">
                             <img
                               src={tech.img}
-                              alt={tech.name}
+                              alt={`${tech.name} - ${tech.description.substring(0, 50)}`}
+                              width="96"
+                              height="96"
                               className="w-full h-full object-contain"
+                              loading="lazy"
+                              decoding="async"
                             />
                           </div>
                         </div>
@@ -723,8 +731,14 @@ export default function Home() {
                           <div className="w-full h-full rounded-xl border-2 border-gray-700 overflow-hidden">
                             <img
                               src={project.img}
-                              alt={project.name}
+                              alt={`${project.name} - ${project.description.substring(0, 60)}`}
+                              width={isMobile ? 256 : 320}
+                              height={isMobile ? 320 : 384}
                               className="w-full h-full object-cover"
+                              loading={index === currentProject ? "eager" : "lazy"}
+                              decoding="async"
+                              fetchPriority={index === currentProject ? "high" : "auto"}
+                              sizes="(max-width: 768px) 256px, 320px"
                             />
                           </div>
                           {index === currentProject && (
