@@ -25,15 +25,9 @@ export default function App({ Component, pageProps }: any) {
         <meta property="og:url" content="https://thiagosaquette.org/" />
         <meta property="og:title" content="Thiago Saquette - Desenvolvedor FullStack | Python, React, TypeScript" />
         <meta property="og:description" content="Desenvolvedor FullStack brasileiro com 5 anos de experiência. Experiência em Python, React, TypeScript, Node.js, AWS e Google Cloud." />
-        {/* Primeira imagem OG - padrão para Facebook e outras plataformas */}
         <meta property="og:image" content="https://thiagosaquette.org/portifolio-img.jpg" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
-        <meta property="og:image:type" content="image/jpeg" />
-        {/* Segunda imagem OG - versão quadrada alternativa para WhatsApp */}
-        <meta property="og:image" content="https://thiagosaquette.org/portifolio-img-square.jpg" />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="1200" />
         <meta property="og:image:type" content="image/jpeg" />
         <meta property="og:locale" content="pt_BR" />
         <meta property="og:site_name" content="Thiago Saquette Portfolio" />
