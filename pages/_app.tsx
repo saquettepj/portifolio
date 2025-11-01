@@ -1,6 +1,6 @@
 import '../src/index.css'
 import Head from 'next/head'
-import Script from 'next/script' // Mantido para Google Analytics
+import Script from 'next/script'
 
 export default function App({ Component, pageProps }: any) {
   return (
@@ -12,10 +12,10 @@ export default function App({ Component, pageProps }: any) {
         <meta name="description" content="Desenvolvedor FullStack brasileiro com 5 anos de experiência em React, TypeScript, Node.js, Python, AWS, Google. Projetos com IA e automações." />
         <meta name="keywords" content="desenvolvedor brasil, desenvolvedor fullstack, python developer, react developer, typescript, nodejs, aws, google cloud, machine learning, ia, automação, saas, b2b, desenvolvedor brasileiro, programador brasil" />
         <meta name="author" content="Thiago José Fagundes Saquette" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
         <meta name="theme-color" content="#000000" />
         <meta name="color-scheme" content="dark light" />
-        <meta name="robots" content="index, follow" />
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
         <meta name="language" content="pt-BR" />
         <meta name="geo.region" content="BR" />
         <meta name="geo.country" content="Brasil" />
@@ -64,15 +64,15 @@ export default function App({ Component, pageProps }: any) {
         {/* Fallback */}
         <link rel="shortcut icon" href="/favicon-32x32.png" />
         
-        {/* Preconnect para performance - apenas domínios críticos e usados na primeira renderização */}
+        {/* Preconnect para performance - apenas domínios críticos */}
         <link rel="preconnect" href="https://cdn.jsdelivr.net" crossOrigin="anonymous" />
-        <link rel="dns-prefetch" href="https://cdn.brandfetch.io" />
-        <link rel="dns-prefetch" href="https://icon.icepanel.io" />
+        <link rel="preconnect" href="https://cdn.brandfetch.io" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://icon.icepanel.io" crossOrigin="anonymous" />
         
         {/* DNS Prefetch - apenas quando necessário (não crítico) */}
-        <link rel="dns-prefetch" href="//www.linkedin.com" />
-        <link rel="dns-prefetch" href="//github.com" />
-        <link rel="dns-prefetch" href="//wa.me" />
+        <link rel="dns-prefetch" href="https://www.linkedin.com" />
+        <link rel="dns-prefetch" href="https://github.com" />
+        <link rel="dns-prefetch" href="https://wa.me" />
         
         {/* Structured Data - JSON-LD */}
         <script
@@ -213,14 +213,14 @@ export default function App({ Component, pageProps }: any) {
         />
       </Head>
       
-      {/* Google Analytics 4 - Otimizado para não bloquear renderização */}
+      {/* Google Analytics 4 - Carregado após interação do usuário para melhor performance */}
       <Script
-        strategy="lazyOnload"
+        strategy="afterInteractive"
         src="https://www.googletagmanager.com/gtag/js?id=G-39MJ7RH569"
       />
       <Script
         id="google-analytics"
-        strategy="lazyOnload"
+        strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: `
             window.dataLayer = window.dataLayer || [];
@@ -229,6 +229,7 @@ export default function App({ Component, pageProps }: any) {
             gtag('config', 'G-39MJ7RH569', {
               page_title: document.title,
               page_location: window.location.href,
+              send_page_view: false
             });
           `,
         }}

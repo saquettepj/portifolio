@@ -2,19 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Tipografia global segura para evitar cortes de descendentes (g, j, p, q, y) */
+/* System fonts stack para performance máxima - sem download de fontes */
 @layer base {
   html {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
   }
   body {
-    line-height: 1.5; /* base segura */
+    line-height: 1.5;
     overflow-wrap: anywhere;
   }
   h1, h2, h3, h4 {
-    line-height: 1.2; /* títulos com folga */
+    line-height: 1.2;
+    font-weight: 700;
   }
 }
 

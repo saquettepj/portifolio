@@ -1,13 +1,15 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
-import { ChevronDown } from 'lucide-react';
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import dynamic from 'next/dynamic';
 import { useSwipeable } from 'react-swipeable';
-import { Linkedin, Github, Mail, MessageCircle } from 'lucide-react';
+import { ChevronDown, Linkedin, Github, Mail, MessageCircle } from 'lucide-react';
 import * as Tooltip from '@radix-ui/react-tooltip';
 import * as Popover from '@radix-ui/react-popover';
 
-// Dynamic import apenas para Marquee que é pesado e usado só em desktop
-const Marquee = dynamic(() => import("react-fast-marquee"), { ssr: false });
+// Dynamic import para Marquee - carregado apenas quando necessário (pesado)
+const Marquee = dynamic(() => import("react-fast-marquee"), { 
+  ssr: false,
+  loading: () => <div className="w-full h-32" aria-label="Carregando tecnologias..." />
+});
 
 interface Technology {
   img: string;
@@ -215,7 +217,59 @@ const technologies: Technology[] = [
 ];
 
 
-export default function Home() {
+// Memoizar projetos para evitar recálculos
+const projects: Project[] = [
+  {
+    img: `${baseImageUrl}/dj.png`,
+    ref: 'https://saquettepj.github.io/DJ-app/',
+    name: 'Modificação em plataforma de DJ',
+    description: 'Refinamento de UI/UX e Otimização de Plataforma de Música com IA\nAtuação direta na evolução de uma plataforma de DJ baseada em inteligência artificial. O foco foi aprimorar a experiência do usuário (UI/UX) e implementar novas funcionalidades, resultando em uma interação mais intuitiva e no aumento da capacidade de geração musical da ferramenta.'
+  },
+  {
+    img: `${baseImageUrl}/foursales.png`,
+    ref: 'https://www.foursales.com.br/candidatos',
+    name: 'FourSales - Full stack',
+    description: 'Desenvolvimento de Componentes Reutilizáveis e Interfaces Completas\nEm ambiente de alta demanda, atuei no frontend (React/Redux), contribuindo ativamente para o refinamento do design e implementação de código com alta reusabilidade em componentes (UI/UX). A adoção desses componentes reduziu o tempo de desenvolvimento em projetos futuros e ajudou a manter a estabilidade do software via QA.'
+  },
+  {
+    img: `${baseImageUrl}/analise.png`,
+    ref: 'https://saquettepj.github.io/AI-static-report/',
+    name: 'Analise de IA Generativa',
+    description: 'Consultoria Estratégica e Análise Técnica para Adoção de IA Generativa\nElaboração de um relatório de análise e consultoria para uma empresa parceira, focado na aquisição de serviços de IA generativa. O projeto envolveu a avaliação de provedores e modelos, culminando em uma recomendação estratégica que alinhou as necessidades técnicas da empresa com as soluções de melhor custo-benefício.'
+  },
+  {
+    img: `${baseImageUrl}/saas.png`,
+    ref: 'https://github.com/saquettepj',
+    name: 'Sistema Micro-SaaS B2B',
+    description: 'Arquitetura e Desenvolvimento Full-Stack de Solução Micro-SaaS B2B\nConstrução de uma plataforma completa (React, NestJS) para gestão de ordens de serviço e vendas, hospedada na Google Cloud Platform (GCP). O projeto foi desenhado para otimizar a gestão de clientes e processos internos, focando na escalabilidade e automação de tarefas para o público B2B.'
+  },
+  {
+    img: `${baseImageUrl}/n8n.png`,
+    ref: 'https://github.com/saquettepj',
+    name: 'Automações com IA (N8N)',
+    description: 'Criação de Agentes de Automação (N8N) e Web Scraping com IA\nImplementação de fluxos de automação avançados utilizando N8N, integrados com modelos de IA. O sistema realiza web scraping e análise de dados (agentes de busca) para o mercado de pontos em crédito, permitindo a extração e processamento de informações periodicamente.'
+  },
+  {
+    img: `${baseImageUrl}/chat.png`,
+    ref: 'https://github.com/saquettepj',
+    name: 'Chatbot Agente com IA Generativa',
+    description: 'Desenvolvimento de Agente Conversacional (RAG) com IA Generativa\nCriação de um chatbot (agente) com IA generativa, utilizando a arquitetura RAG. O sistema se conecta a um banco de dados vetorial e a uma API de busca para consultar e processar informações de documentos privados, fornecendo respostas precisas e contextualizadas com base em uma base de conhecimento.'
+  },
+  {
+    img: `${baseImageUrl}/ia.png`,
+    ref: 'https://github.com/saquettepj',
+    name: 'API para Modelo de IA Preditivo',
+    description: 'Desenvolvimento de API (Python) para Produção de Modelo Preditivo (MLOps)\nImplementação de uma API robusta em Python (FastAPI/Flask) para servir um modelo de machine learning treinado (regressão) para predição de valores contínuos. O projeto focou na criação de modelo com rápido processamento em CPUs para a predição em tempo mínimo.'
+  },
+  {
+    img: `${baseImageUrl}/pong.png`,
+    ref: 'https://saquettepj.github.io/PongLike/',
+    name: 'Jogo em Aplicação Web',
+    description: 'Desenvolvimento de Jogo Web Híbrido (Breakout/Roguelike) em (HTML5 Canvas, JS) co-desenvolvido com IA (engenharia de prompt avançada) e validado por code review intenso e ajustes manuais. Foco na integração de mecânicas complexas e na otimização de renderização. O projeto incluiu a gestão de múltiplos estados de jogo (menu, loja, game over) e a implementação de um sistema visual utilizando partículas.'
+  }
+];
+
+function Home() {
   const [currentProject, setCurrentProject] = useState(1);
   const [hoveredProject, setHoveredProject] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
@@ -233,6 +287,9 @@ export default function Home() {
   const [dragOffset, setDragOffset] = useState(0);
   const [openPopover, setOpenPopover] = useState<string | null>(null);
   const treadmillRef = useRef<HTMLDivElement>(null);
+  
+  // Memoizar tecnologias duplicadas para mobile
+  const duplicatedTechnologies = useMemo(() => [...technologies, ...technologies], []);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(max-width: 768px)');
@@ -246,58 +303,6 @@ export default function Home() {
     
     return () => mediaQuery.removeEventListener('change', handleResize);
   }, []);
-
-
-  const projects: Project[] = [
-    {
-      img: `${baseImageUrl}/dj.png`,
-      ref: 'https://saquettepj.github.io/DJ-app/',
-      name: 'Modificação em plataforma de DJ',
-      description: 'Refinamento de UI/UX e Otimização de Plataforma de Música com IA\nAtuação direta na evolução de uma plataforma de DJ baseada em inteligência artificial. O foco foi aprimorar a experiência do usuário (UI/UX) e implementar novas funcionalidades, resultando em uma interação mais intuitiva e no aumento da capacidade de geração musical da ferramenta.'
-    },
-    {
-      img: `${baseImageUrl}/foursales.png`,
-      ref: 'https://www.foursales.com.br/candidatos',
-      name: 'FourSales - Full stack',
-      description: 'Desenvolvimento de Componentes Reutilizáveis e Interfaces Completas\nEm ambiente de alta demanda, atuei no frontend (React/Redux), contribuindo ativamente para o refinamento do design e implementação de código com alta reusabilidade em componentes (UI/UX). A adoção desses componentes reduziu o tempo de desenvolvimento em projetos futuros e ajudou a manter a estabilidade do software via QA.'
-    },
-    {
-      img: `${baseImageUrl}/analise.png`,
-      ref: 'https://saquettepj.github.io/AI-static-report/',
-      name: 'Analise de IA Generativa',
-      description: 'Consultoria Estratégica e Análise Técnica para Adoção de IA Generativa\nElaboração de um relatório de análise e consultoria para uma empresa parceira, focado na aquisição de serviços de IA generativa. O projeto envolveu a avaliação de provedores e modelos, culminando em uma recomendação estratégica que alinhou as necessidades técnicas da empresa com as soluções de melhor custo-benefício.'
-    },
-    {
-      img: `${baseImageUrl}/saas.png`,
-      ref: 'https://github.com/saquettepj',
-      name: 'Sistema Micro-SaaS B2B',
-      description: 'Arquitetura e Desenvolvimento Full-Stack de Solução Micro-SaaS B2B\nConstrução de uma plataforma completa (React, NestJS) para gestão de ordens de serviço e vendas, hospedada na Google Cloud Platform (GCP). O projeto foi desenhado para otimizar a gestão de clientes e processos internos, focando na escalabilidade e automação de tarefas para o público B2B.'
-    },
-    {
-      img: `${baseImageUrl}/n8n.png`,
-      ref: 'https://github.com/saquettepj',
-      name: 'Automações com IA (N8N)',
-      description: 'Criação de Agentes de Automação (N8N) e Web Scraping com IA\nImplementação de fluxos de automação avançados utilizando N8N, integrados com modelos de IA. O sistema realiza web scraping e análise de dados (agentes de busca) para o mercado de pontos em crédito, permitindo a extração e processamento de informações periodicamente.'
-    },
-    {
-      img: `${baseImageUrl}/chat.png`,
-      ref: 'https://github.com/saquettepj',
-      name: 'Chatbot Agente com IA Generativa',
-      description: 'Desenvolvimento de Agente Conversacional (RAG) com IA Generativa\nCriação de um chatbot (agente) com IA generativa, utilizando a arquitetura RAG. O sistema se conecta a um banco de dados vetorial e a uma API de busca para consultar e processar informações de documentos privados, fornecendo respostas precisas e contextualizadas com base em uma base de conhecimento.'
-    },
-    {
-      img: `${baseImageUrl}/ia.png`,
-      ref: 'https://github.com/saquettepj',
-      name: 'API para Modelo de IA Preditivo',
-      description: 'Desenvolvimento de API (Python) para Produção de Modelo Preditivo (MLOps)\nImplementação de uma API robusta em Python (FastAPI/Flask) para servir um modelo de machine learning treinado (regressão) para predição de valores contínuos. O projeto focou na criação de modelo com rápido processamento em CPUs para a predição em tempo mínimo.'
-    },
-    {
-      img: `${baseImageUrl}/pong.png`,
-      ref: 'https://saquettepj.github.io/PongLike/',
-      name: 'Jogo em Aplicação Web',
-      description: 'Desenvolvimento de Jogo Web Híbrido (Breakout/Roguelike) em (HTML5 Canvas, JS) co-desenvolvido com IA (engenharia de prompt avançada) e validado por code review intenso e ajustes manuais. Foco na integração de mecânicas complexas e na otimização de renderização. O projeto incluiu a gestão de múltiplos estados de jogo (menu, loja, game over) e a implementação de um sistema visual utilizando partículas.'
-    }
-  ]
 
   const handleProjectChange = useCallback((direction: 'left' | 'right') => {
     if (isAnimating) return;
@@ -571,7 +576,7 @@ export default function Home() {
                     onMouseUp={handleTreadmillMouseUp}
                     onMouseLeave={handleTreadmillMouseUp}
                   >
-                    {[...technologies, ...technologies].map((tech, index) => {
+                    {duplicatedTechnologies.map((tech, index) => {
                       const key = `${tech.name}-${index}`;
                       
                       const triggerDiv = (
@@ -585,6 +590,8 @@ export default function Home() {
                               className="w-full h-full object-contain"
                               loading="lazy"
                               decoding="async"
+                              fetchPriority="low"
+                              referrerPolicy="no-referrer-when-downgrade"
                             />
                           </div>
                         </div>
@@ -652,6 +659,8 @@ export default function Home() {
                               className="w-full h-full object-contain"
                               loading="lazy"
                               decoding="async"
+                              fetchPriority="low"
+                              referrerPolicy="no-referrer-when-downgrade"
                             />
                           </div>
                         </div>
@@ -752,6 +761,7 @@ export default function Home() {
                               height={isMobile ? 320 : 384}
                               className="w-full h-full object-cover"
                               loading={index === currentProject ? "eager" : "lazy"}
+                              fetchPriority={index === currentProject ? "high" : "low"}
                               decoding="async"
                               sizes="(max-width: 768px) 256px, 320px"
                             />
@@ -853,3 +863,5 @@ export default function Home() {
     </Tooltip.Provider>
   );
 }
+
+export default Home;
