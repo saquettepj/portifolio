@@ -8,8 +8,6 @@ const nextConfig = {
   assetPrefix: '',
   images: { 
     unoptimized: true,
-    formats: ['image/avif', 'image/webp'],
-    minimumCacheTTL: 31536000, // 1 ano para cache de imagens
   },
   trailingSlash: true,
   

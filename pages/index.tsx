@@ -499,56 +499,6 @@ function Home() {
     };
   }, [isMobile, handleTreadmillTouchStart, handleTreadmillTouchMove, handleTreadmillTouchEnd]);
 
-  const handleTreadmillMouseDown = (e: React.MouseEvent) => {
-    if (!isMobile) return;
-    setIsDragging(true);
-    setDragStart(e.clientX);
-    setDragOffset(0);
-    setOpenPopover(null);
-  };
-
-  const handleTreadmillMouseMove = (e: React.MouseEvent) => {
-    if (!isMobile || !isDragging) return;
-    const currentX = e.clientX;
-    
-    const offset = currentX - dragStart;
-    const techWidth = 128;
-    const totalWidth = technologies.length * techWidth;
-    const maxPosition = 0;
-    const minPosition = -totalWidth;
-    
-    const limitedOffset = Math.max(
-      minPosition - treadmillPosition,
-      Math.min(maxPosition - treadmillPosition, offset)
-    );
-    
-    setDragOffset(limitedOffset);
-  };
-
-  const handleTreadmillMouseUp = () => {
-    if (!isMobile || !isDragging) return;
-    setIsDragging(false);
-    
-    const sensitivity = 0.8;
-    
-    if (Math.abs(dragOffset) > 10) {
-      const techWidth = 128;
-      const totalWidth = technologies.length * techWidth;
-      const maxPosition = 0;
-      const minPosition = -totalWidth;
-      
-      const newPosition = Math.max(
-        minPosition,
-        Math.min(maxPosition, treadmillPosition + (dragOffset * sensitivity))
-      );
-      
-      setTreadmillPosition(newPosition);
-    }
-    
-    setDragStart(0);
-    setDragOffset(0);
-  };
-
   return (
     <Tooltip.Provider>
       <div className="min-h-screen bg-black text-white">
@@ -588,10 +538,6 @@ function Home() {
                       transform: `translateX(${treadmillPosition + dragOffset}px)`,
                       cursor: isDragging ? 'grabbing' : 'grab'
                     }}
-                    onMouseDown={handleTreadmillMouseDown}
-                    onMouseMove={handleTreadmillMouseMove}
-                    onMouseUp={handleTreadmillMouseUp}
-                    onMouseLeave={handleTreadmillMouseUp}
                   >
                     {duplicatedTechnologies.map((tech, index) => {
                       const key = `${tech.name}-${index}`;
