@@ -458,7 +458,7 @@ function Home() {
     
     if (Math.abs(dragOffset) > 10) {
       setTreadmillPosition((prev) => {
-        let newPosition = prev + (dragOffset * sensitivity);
+        const newPosition = prev + (dragOffset * sensitivity);
         const techWidth = 128;
         const totalWidth = technologies.length * techWidth;
         const maxPosition = 0;
@@ -532,14 +532,15 @@ function Home() {
     const sensitivity = 0.8;
     
     if (Math.abs(dragOffset) > 10) {
-      let newPosition = treadmillPosition + (dragOffset * sensitivity);
-      
       const techWidth = 128;
       const totalWidth = technologies.length * techWidth;
       const maxPosition = 0;
       const minPosition = -totalWidth;
       
-      newPosition = Math.max(minPosition, Math.min(maxPosition, newPosition));
+      const newPosition = Math.max(
+        minPosition,
+        Math.min(maxPosition, treadmillPosition + (dragOffset * sensitivity))
+      );
       
       setTreadmillPosition(newPosition);
     }
