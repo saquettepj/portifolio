@@ -1,8 +1,9 @@
 import '../src/index.css'
 import Head from 'next/head'
 import Script from 'next/script'
+import type { AppProps } from 'next/app'
 
-export default function App({ Component, pageProps }: any) {
+export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>

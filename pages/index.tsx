@@ -283,7 +283,6 @@ function Home() {
   const [treadmillPosition, setTreadmillPosition] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState(0);
-  const [dragCurrent, setDragCurrent] = useState(0);
   const [dragOffset, setDragOffset] = useState(0);
   const [openPopover, setOpenPopover] = useState<string | null>(null);
   const treadmillRef = useRef<HTMLDivElement>(null);
@@ -315,7 +314,7 @@ function Home() {
       return prev === 0 ? projects.length - 1 : prev - 1;
     });
     setTimeout(() => setIsAnimating(false), 600);
-  }, [isAnimating, projects.length]);
+  }, [isAnimating]);
 
   useEffect(() => {
     if (isMobile) {
@@ -376,7 +375,7 @@ function Home() {
 
   const handleProjectClick = useCallback(() => {
     window.open(projects[currentProject].ref, '_blank');
-  }, [projects, currentProject]);
+  }, [currentProject]);
 
   const getProjectStyle = (index: number, isMobile: boolean) => {
     const diff = index - currentProject;
@@ -424,20 +423,18 @@ function Home() {
     trackMouse: false
   });
 
-  const handleTreadmillTouchStart = (e: React.TouchEvent) => {
+  const handleTreadmillTouchStart = useCallback((e: TouchEvent) => {
     if (!isMobile) return;
     setIsDragging(true);
     setDragStart(e.touches[0].clientX);
-    setDragCurrent(e.touches[0].clientX);
     setDragOffset(0);
     setOpenPopover(null);
-  };
+  }, [isMobile]);
 
-  const handleTreadmillTouchMove = (e: React.TouchEvent) => {
+  const handleTreadmillTouchMove = useCallback((e: TouchEvent) => {
     if (!isMobile || !isDragging) return;
     e.preventDefault();
     const currentX = e.touches[0].clientX;
-    setDragCurrent(currentX);
     
     const offset = currentX - dragStart;
     const techWidth = 128;
@@ -451,37 +448,61 @@ function Home() {
     );
     
     setDragOffset(limitedOffset);
-  };
+  }, [isMobile, isDragging, dragStart, treadmillPosition]);
 
-  const handleTreadmillTouchEnd = () => {
+  const handleTreadmillTouchEnd = useCallback(() => {
     if (!isMobile || !isDragging) return;
     setIsDragging(false);
     
     const sensitivity = 0.8;
     
     if (Math.abs(dragOffset) > 10) {
-      let newPosition = treadmillPosition + (dragOffset * sensitivity);
-      
-      const techWidth = 128;
-      const totalWidth = technologies.length * techWidth;
-      const maxPosition = 0;
-      const minPosition = -totalWidth;
-      
-      newPosition = Math.max(minPosition, Math.min(maxPosition, newPosition));
-      
-      setTreadmillPosition(newPosition);
+      setTreadmillPosition((prev) => {
+        let newPosition = prev + (dragOffset * sensitivity);
+        const techWidth = 128;
+        const totalWidth = technologies.length * techWidth;
+        const maxPosition = 0;
+        const minPosition = -totalWidth;
+        return Math.max(minPosition, Math.min(maxPosition, newPosition));
+      });
     }
     
     setDragStart(0);
-    setDragCurrent(0);
     setDragOffset(0);
-  };
+  }, [isMobile, isDragging, dragOffset]);
+
+  // Adicionar listeners de touch diretamente com passive: false para permitir preventDefault
+  useEffect(() => {
+    const element = treadmillRef.current;
+    if (!element || !isMobile) return;
+
+    const touchStart = (e: TouchEvent) => {
+      handleTreadmillTouchStart(e);
+    };
+
+    const touchMove = (e: TouchEvent) => {
+      handleTreadmillTouchMove(e);
+    };
+
+    const touchEnd = () => {
+      handleTreadmillTouchEnd();
+    };
+
+    element.addEventListener('touchstart', touchStart, { passive: true });
+    element.addEventListener('touchmove', touchMove, { passive: false });
+    element.addEventListener('touchend', touchEnd, { passive: true });
+
+    return () => {
+      element.removeEventListener('touchstart', touchStart);
+      element.removeEventListener('touchmove', touchMove);
+      element.removeEventListener('touchend', touchEnd);
+    };
+  }, [isMobile, handleTreadmillTouchStart, handleTreadmillTouchMove, handleTreadmillTouchEnd]);
 
   const handleTreadmillMouseDown = (e: React.MouseEvent) => {
     if (!isMobile) return;
     setIsDragging(true);
     setDragStart(e.clientX);
-    setDragCurrent(e.clientX);
     setDragOffset(0);
     setOpenPopover(null);
   };
@@ -489,7 +510,6 @@ function Home() {
   const handleTreadmillMouseMove = (e: React.MouseEvent) => {
     if (!isMobile || !isDragging) return;
     const currentX = e.clientX;
-    setDragCurrent(currentX);
     
     const offset = currentX - dragStart;
     const techWidth = 128;
@@ -525,7 +545,6 @@ function Home() {
     }
     
     setDragStart(0);
-    setDragCurrent(0);
     setDragOffset(0);
   };
 
@@ -568,9 +587,6 @@ function Home() {
                       transform: `translateX(${treadmillPosition + dragOffset}px)`,
                       cursor: isDragging ? 'grabbing' : 'grab'
                     }}
-                    onTouchStart={handleTreadmillTouchStart}
-                    onTouchMove={handleTreadmillTouchMove}
-                    onTouchEnd={handleTreadmillTouchEnd}
                     onMouseDown={handleTreadmillMouseDown}
                     onMouseMove={handleTreadmillMouseMove}
                     onMouseUp={handleTreadmillMouseUp}
