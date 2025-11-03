@@ -1,0 +1,168 @@
+{
+  "title": "Thiago Saquette - Desenvolvedor FullStack | React, TypeScript",
+  "description": "Desenvolvedor FullStack brasileiro com 5 anos de experiência em React, TypeScript, Node.js, Python, AWS, Google. Projetos com IA e automações.",
+  "keywords": "desenvolvedor brasil, desenvolvedor fullstack, python developer, react developer, typescript, nodejs, aws, google cloud, machine learning, ia, automação, saas, b2b, desenvolvedor brasileiro, programador brasil",
+  "author": "Thiago José Fagundes Saquette",
+  "viewport": "width=device-width, initial-scale=1, viewport-fit=cover",
+  "themeColor": "#000000",
+  "colorScheme": "dark light",
+  "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+  "language": "pt-BR",
+  "geoRegion": "BR",
+  "geoCountry": "Brasil",
+  "canonical": "https://www.thiagosaquette.org/",
+  "alternate": "https://thiagosaquette.org/",
+  "icons": {
+    "favicon16": "/favicon-16x16.png",
+    "favicon32": "/favicon-32x32.png",
+    "favicon57": "/favicon-57x57.png",
+    "favicon180": "/favicon-180x180.png",
+    "favicon192": "/favicon-192x192.png",
+    "favicon310": "/favicon-310x310.png",
+    "apple57": "/favicon-57x57.png",
+    "apple180": "/favicon-180x180.png",
+    "shortcut": "/favicon-32x32.png"
+  },
+  "preconnect": [
+    "https://cdn.jsdelivr.net",
+    "https://cdn.brandfetch.io",
+    "https://icon.icepanel.io"
+  ],
+  "dnsPrefetch": [
+    "https://www.linkedin.com",
+    "https://github.com",
+    "https://wa.me"
+  ],
+  "openGraph": {
+    "type": "website",
+    "url": "https://thiagosaquette.org/",
+    "title": "Thiago Saquette - Desenvolvedor FullStack | Python, React, TypeScript",
+    "description": "Desenvolvedor FullStack brasileiro com 5 anos de experiência. Experiência em Python, React, TypeScript, Node.js, AWS e Google Cloud.",
+    "images": [
+      "https://thiagosaquette.org/portifolio-img.jpg",
+      "https://www.thiagosaquette.org/portifolio-img.jpg"
+    ],
+    "imageWidth": "1200",
+    "imageHeight": "630",
+    "imageType": "image/jpeg",
+    "locale": "pt_BR",
+    "siteName": "Thiago Saquette Portfolio"
+  },
+  "twitter": {
+    "card": "summary_large_image",
+    "url": "https://thiagosaquette.org/",
+    "title": "Thiago Saquette - Desenvolvedor FullStack",
+    "description": "Desenvolvedor FullStack brasileiro com 5 anos de experiência. Experiêcia em Python, React, TypeScript, Node.js, AWS e Google Cloud.",
+    "images": [
+      "https://thiagosaquette.org/portifolio-img.jpg",
+      "https://www.thiagosaquette.org/portifolio-img.jpg"
+    ]
+  },
+  "structuredData": {
+    "person": {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Thiago José Fagundes Saquette",
+      "jobTitle": "Desenvolvedor FullStack",
+      "description": "Desenvolvedor FullStack brasileiro com 5 anos de experiência em Python, React, TypeScript, Node.js, AWS e Google Cloud",
+      "url": "https://www.thiagosaquette.org/",
+      "birthDate": "1997-09-17",
+      "gender": "Male",
+      "sameAs": [
+        "https://www.linkedin.com/in/saquette/",
+        "https://github.com/saquettepj"
+      ],
+      "alumniOf": [
+        {
+          "@type": "EducationalOrganization",
+          "name": "Universidade Tecnológica Federal do Paraná"
+        }
+      ],
+      "knowsLanguage": [
+        { "@type": "Language", "name": "Portuguese" },
+        { "@type": "Language", "name": "English" }
+      ],
+      "knowsAbout": [
+        "Python",
+        "React",
+        "TypeScript",
+        "JavaScript",
+        "Node.js",
+        "AWS",
+        "Google Cloud Platform",
+        "Machine Learning",
+        "Inteligência Artificial",
+        "Desenvolvimento Web",
+        "Desenvolvimento Mobile",
+        "Automação",
+        "SaaS",
+        "B2B"
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Curitiba",
+        "addressRegion": "Paraná",
+        "addressCountry": "BR"
+      },
+      "email": "thigo.saquettepj@gmail.com",
+      "telephone": "+55-41-99247-3450"
+    },
+    "website": {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Thiago Saquette - Desenvolvedor FullStack",
+      "url": "https://www.thiagosaquette.org/",
+      "inLanguage": "pt-BR",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://www.thiagosaquette.org/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    },
+    "organization": {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "THIAGO JOSE FAGUNDES SAQUETTE",
+      "url": "https://www.thiagosaquette.org/",
+      "description": "Desenvolvedor FullStack especializado em Python, React, TypeScript, Node.js, AWS e Google Cloud",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+55-41-99247-3450",
+        "contactType": "Professional",
+        "email": "thigo.saquettepj@gmail.com",
+        "areaServed": "BR",
+        "availableLanguage": ["Portuguese", "English"]
+      },
+      "sameAs": [
+        "https://www.linkedin.com/in/saquette/",
+        "https://github.com/saquettepj"
+      ]
+    },
+    "profilePage": {
+      "@context": "https://schema.org",
+      "@type": "ProfilePage",
+      "mainEntity": {
+        "@type": "Person",
+        "name": "Thiago José Fagundes Saquette",
+        "jobTitle": "Desenvolvedor FullStack",
+        "url": "https://www.thiagosaquette.org/",
+        "sameAs": [
+          "https://www.linkedin.com/in/saquette/",
+          "https://github.com/saquettepj"
+        ],
+        "knowsAbout": [
+          "Python",
+          "React",
+          "TypeScript",
+          "JavaScript",
+          "Node.js",
+          "AWS",
+          "Google Cloud Platform",
+          "Machine Learning",
+          "Inteligência Artificial"
+        ]
+      }
+    }
+  }
+}
+

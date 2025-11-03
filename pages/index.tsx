@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
+import { useState, useEffect, useRef, useCallback, useMemo, memo } from 'react';
 import dynamic from 'next/dynamic';
 import { useSwipeable } from 'react-swipeable';
 import { ChevronDown, Linkedin, Github, Mail, MessageCircle } from 'lucide-react';
@@ -26,6 +26,51 @@ interface Project {
 }
 
 const baseImageUrl = ''
+
+// Componentes visuais puros, memoizados para evitar re-render desnecessário
+const TechLogo = memo(function TechLogo({ src, alt }: { src: string; alt: string }) {
+  return (
+    <img
+      src={src}
+      alt={alt}
+      width="96"
+      height="96"
+      className="w-full h-full object-contain"
+      loading="lazy"
+      decoding="async"
+      fetchPriority="low"
+      referrerPolicy="no-referrer-when-downgrade"
+    />
+  );
+});
+
+const ProjectImage = memo(function ProjectImage({
+  src,
+  alt,
+  width,
+  height,
+  eager
+}: {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  eager: boolean;
+}) {
+  return (
+    <img
+      src={src}
+      alt={alt}
+      width={width}
+      height={height}
+      className="w-full h-full object-cover"
+      loading={eager ? 'eager' : 'lazy'}
+      fetchPriority={eager ? 'high' : 'low'}
+      decoding="async"
+      sizes="(max-width: 768px) 256px, 320px"
+    />
+  );
+});
 
 const technologies: Technology[] = [
   {
@@ -545,16 +590,9 @@ function Home() {
                       const triggerDiv = (
                         <div className="relative inline-block align-top group">
                           <div className="w-24 h-24 bg-gray-800 rounded-xl p-4 flex items-center justify-center cursor-pointer transition-all hover:scale-125 hover:bg-gray-700 hover:shadow-lg hover:shadow-gray-500/20">
-                            <img
+                            <TechLogo
                               src={tech.img}
                               alt={`${tech.name} - ${tech.description.substring(0, 50)}`}
-                              width="96"
-                              height="96"
-                              className="w-full h-full object-contain"
-                              loading="lazy"
-                              decoding="async"
-                              fetchPriority="low"
-                              referrerPolicy="no-referrer-when-downgrade"
                             />
                           </div>
                         </div>
@@ -614,16 +652,9 @@ function Home() {
                           onClick={() => window.open(tech.ref, '_blank')}
                         >
                           <div className="w-24 h-24 bg-gray-800 rounded-xl p-4 flex items-center justify-center cursor-pointer transition-all hover:scale-125 hover:bg-gray-700 hover:shadow-lg hover:shadow-gray-500/20">
-                            <img
+                            <TechLogo
                               src={tech.img}
                               alt={`${tech.name} - ${tech.description.substring(0, 50)}`}
-                              width="96"
-                              height="96"
-                              className="w-full h-full object-contain"
-                              loading="lazy"
-                              decoding="async"
-                              fetchPriority="low"
-                              referrerPolicy="no-referrer-when-downgrade"
                             />
                           </div>
                         </div>
@@ -717,16 +748,12 @@ function Home() {
                       >
                         <div className="w-64 h-80 md:w-80 md:h-96 bg-gray-900 rounded-2xl shadow-2xl border-4 border-gray-700 relative">
                           <div className="w-full h-full rounded-xl border-2 border-gray-700 overflow-hidden">
-                            <img
+                            <ProjectImage
                               src={project.img}
                               alt={`${project.name} - ${project.description.substring(0, 60)}`}
                               width={isMobile ? 256 : 320}
                               height={isMobile ? 320 : 384}
-                              className="w-full h-full object-cover"
-                              loading={index === currentProject ? "eager" : "lazy"}
-                              fetchPriority={index === currentProject ? "high" : "low"}
-                              decoding="async"
-                              sizes="(max-width: 768px) 256px, 320px"
+                              eager={index === currentProject}
                             />
                           </div>
                           {index === currentProject && (
