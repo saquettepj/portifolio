@@ -61,23 +61,22 @@ export default function App({ Component, pageProps }: AppProps) {
           <link rel="alternate" href={seo.alternate} />
         )}
         
-        {/* Favicon */}
-        <link rel="icon" type="image/png" sizes="16x16" href={seo.icons.favicon16} />
-        <link rel="icon" type="image/png" sizes="32x32" href={seo.icons.favicon32} />
-        <link rel="icon" type="image/png" sizes="57x57" href={seo.icons.favicon57} />
-        <link rel="icon" type="image/png" sizes="180x180" href={seo.icons.favicon180} />
-        <link rel="icon" type="image/png" sizes="192x192" href={seo.icons.favicon192} />
-        <link rel="icon" type="image/png" sizes="310x310" href={seo.icons.favicon310} />
+        {/* Favicon - Google requer ícone acessível na raiz e formato correto */}
+        <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
+        <link rel="icon" type="image/png" sizes="180x180" href="/favicon-180x180.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        
+        {/* Favicon padrão - Google busca este primeiro */}
+        <link rel="icon" href="/favicon-32x32.png" type="image/png" />
+        <link rel="shortcut icon" href="/favicon-32x32.png" type="image/png" />
         
         {/* Apple Touch Icons */}
-        <link rel="apple-touch-icon" sizes="57x57" href={seo.icons.apple57} />
-        <link rel="apple-touch-icon" sizes="180x180" href={seo.icons.apple180} />
+        <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180x180.png" />
+        <link rel="apple-touch-icon" sizes="57x57" href="/favicon-57x57.png" />
         
         {/* Android Chrome Icons */}
-        <link rel="icon" type="image/png" sizes="192x192" href={seo.icons.favicon192} />
-        
-        {/* Fallback */}
-        <link rel="shortcut icon" href={seo.icons.shortcut} />
+        <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
         
         {/* Preconnect para performance - apenas domínios críticos */}
         {seo.preconnect.map((url) => (
