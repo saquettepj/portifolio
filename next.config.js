@@ -29,8 +29,11 @@ const nextConfig = {
     ],
   },
   
-  // Nota: Headers não funcionam com output: 'export'
-  // Configure esses headers no seu servidor/hospedagem (Vercel, Netlify, etc.)
+  // IMPORTANTE: Headers não funcionam com output: 'export' (static export)
+  // Segundo a documentação do Next.js: https://nextjs.org/docs/app/guides/content-security-policy
+  // Para static exports, os headers devem ser configurados no servidor/hospedagem
+  // Headers estão configurados em vercel.json para hospedagem na Vercel
+  // Para outras plataformas, consulte: https://nextjs.org/docs/app/guides/static-exports
   
   // Compressão e otimizações
   compress: true,

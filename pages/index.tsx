@@ -548,10 +548,17 @@ function Home() {
     <Tooltip.Provider>
       <div className="min-h-screen bg-black text-white">
 
+        <nav className="sr-only" aria-label="Navegação principal">
+          <a href="#inicio" className="sr-only focus:not-sr-only">Início</a>
+          <a href="#tecnologias" className="sr-only focus:not-sr-only">Tecnologias</a>
+          <a href="#projetos" className="sr-only focus:not-sr-only">Projetos</a>
+          <a href="#contato" className="sr-only focus:not-sr-only">Contato</a>
+        </nav>
+
         <div className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 [mask-image:linear-gradient(to_bottom,black_70%,transparent_100%)]">
           <div className="max-w-7xl mx-auto px-4 pt-16 md:pt-20 sm:px-6 lg:px-8">
             
-            <section className="text-center md:mb-24 h-auto md:h-[28rem] flex flex-col justify-center items-center">
+            <section id="inicio" className="text-center md:mb-24 h-auto md:h-[28rem] flex flex-col justify-center items-center">
               <h1 className="heading-safe text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-gray-200 to-gray-400 bg-clip-text text-transparent">
                 Thiago José Fagundes Saquette
               </h1>
@@ -561,7 +568,7 @@ function Home() {
               </p>
             </section>
 
-            <section className="pb-64 md:pb-80 mt-16 md:mt-0">
+            <section id="tecnologias" className="pb-64 md:pb-80 mt-16 md:mt-0">
               <h3 className="text-4xl sm:text-5xl font-bold mb-12 text-center text-gray-200">Conhecimento em</h3>
               
               {isMobile && (
@@ -695,7 +702,7 @@ function Home() {
         <div className="bg-black -mt-80 md:-mt-96">
           <div className="max-w-7xl mx-auto px-4 pb-0 sm:px-6 lg:px-8">
 
-            <section ref={projectsSectionRef} className=" pt-48 md:pt-64">
+            <section id="projetos" ref={projectsSectionRef} className=" pt-48 md:pt-64">
               <h3 ref={projectsTitleRef} className="text-4xl sm:text-5xl font-bold mb-12 text-center text-gray-200">
                 Projetos
               </h3>
@@ -799,7 +806,7 @@ function Home() {
         <div className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 [mask-image:linear-gradient(to_top,black_70%,transparent_100%)]">
           <div className="max-w-7xl mx-auto px-4 py-16 md:py-20 sm:px-6 lg:px-8">
             
-            <section className="text-center">
+            <section id="contato" className="text-center">
               <h3 className="text-4xl sm:text-5xl font-bold mb-12 mt-40 text-gray-200">Contato</h3>
               
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">

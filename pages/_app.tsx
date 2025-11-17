@@ -2,9 +2,19 @@ import '../src/index.css'
 import Head from 'next/head'
 import Script from 'next/script'
 import type { AppProps } from 'next/app'
+import { useRouter } from 'next/router'
 import seo from '../src/seo.json'
 
 export default function App({ Component, pageProps }: AppProps) {
+  const router = useRouter()
+  
+  // URL canônica preferida (sempre com www)
+  const canonicalUrl = seo.canonical
+  
+  // Construir URL atual baseada no pathname, sempre usando a versão canônica
+  const currentPath = router.asPath === '/' ? '' : router.asPath
+  const currentCanonical = `${canonicalUrl}${currentPath}`.replace(/\/$/, '') || canonicalUrl
+  
   return (
     <>
       <Head>
@@ -22,9 +32,9 @@ export default function App({ Component, pageProps }: AppProps) {
         <meta name="geo.region" content={seo.geoRegion} />
         <meta name="geo.country" content={seo.geoCountry} />
         
-        {/* Open Graph / Facebook */}
+        {/* Open Graph / Facebook - sempre usando URL canônica */}
         <meta property="og:type" content={seo.openGraph.type} />
-        <meta property="og:url" content={seo.openGraph.url} />
+        <meta property="og:url" content={currentCanonical} />
         <meta property="og:title" content={seo.openGraph.title} />
         <meta property="og:description" content={seo.openGraph.description} />
         {seo.openGraph.images.map((img) => (
@@ -36,18 +46,20 @@ export default function App({ Component, pageProps }: AppProps) {
         <meta property="og:locale" content={seo.openGraph.locale} />
         <meta property="og:site_name" content={seo.openGraph.siteName} />
         
-        {/* Twitter */}
+        {/* Twitter - sempre usando URL canônica */}
         <meta property="twitter:card" content={seo.twitter.card} />
-        <meta property="twitter:url" content={seo.twitter.url} />
+        <meta property="twitter:url" content={currentCanonical} />
         <meta property="twitter:title" content={seo.twitter.title} />
         <meta property="twitter:description" content={seo.twitter.description} />
         {seo.twitter.images.map((img) => (
           <meta key={img} property="twitter:image" content={img} />
         ))}
         
-        {/* Canonical URL - preferência para www */}
-        <link rel="canonical" href={seo.canonical} />
-        <link rel="alternate" href={seo.alternate} />
+        {/* Canonical URL - sempre aponta para versão preferida (com www) */}
+        <link rel="canonical" href={currentCanonical} />
+        {seo.alternate && (
+          <link rel="alternate" href={seo.alternate} />
+        )}
         
         {/* Favicon */}
         <link rel="icon" type="image/png" sizes="16x16" href={seo.icons.favicon16} />

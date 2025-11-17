@@ -10,8 +10,8 @@
   "language": "pt-BR",
   "geoRegion": "BR",
   "geoCountry": "Brasil",
-  "canonical": "https://www.thiagosaquette.org/",
-  "alternate": "https://thiagosaquette.org/",
+  "canonical": "https://www.thiagosaquette.org",
+  "alternate": "https://thiagosaquette.org",
   "icons": {
     "favicon16": "/favicon-16x16.png",
     "favicon32": "/favicon-32x32.png",
@@ -35,7 +35,7 @@
   ],
   "openGraph": {
     "type": "website",
-    "url": "https://thiagosaquette.org/",
+    "url": "https://www.thiagosaquette.org",
     "title": "Thiago Saquette - Desenvolvedor FullStack | Python, React, TypeScript",
     "description": "Desenvolvedor FullStack brasileiro com 5 anos de experiência. Experiência em Python, React, TypeScript, Node.js, AWS e Google Cloud.",
     "images": [
@@ -50,7 +50,7 @@
   },
   "twitter": {
     "card": "summary_large_image",
-    "url": "https://thiagosaquette.org/",
+    "url": "https://www.thiagosaquette.org",
     "title": "Thiago Saquette - Desenvolvedor FullStack",
     "description": "Desenvolvedor FullStack brasileiro com 5 anos de experiência. Experiêcia em Python, React, TypeScript, Node.js, AWS e Google Cloud.",
     "images": [
@@ -65,7 +65,7 @@
       "name": "Thiago José Fagundes Saquette",
       "jobTitle": "Desenvolvedor FullStack",
       "description": "Desenvolvedor FullStack brasileiro com 5 anos de experiência em Python, React, TypeScript, Node.js, AWS e Google Cloud",
-      "url": "https://www.thiagosaquette.org/",
+      "url": "https://www.thiagosaquette.org",
       "birthDate": "1997-09-17",
       "gender": "Male",
       "sameAs": [
@@ -111,11 +111,11 @@
       "@context": "https://schema.org",
       "@type": "WebSite",
       "name": "Thiago Saquette - Desenvolvedor FullStack",
-      "url": "https://www.thiagosaquette.org/",
+      "url": "https://www.thiagosaquette.org",
       "inLanguage": "pt-BR",
       "potentialAction": {
         "@type": "SearchAction",
-        "target": "https://www.thiagosaquette.org/?q={search_term_string}",
+        "target": "https://www.thiagosaquette.org?q={search_term_string}",
         "query-input": "required name=search_term_string"
       }
     },
@@ -123,7 +123,7 @@
       "@context": "https://schema.org",
       "@type": "Organization",
       "name": "THIAGO JOSE FAGUNDES SAQUETTE",
-      "url": "https://www.thiagosaquette.org/",
+      "url": "https://www.thiagosaquette.org",
       "description": "Desenvolvedor FullStack especializado em Python, React, TypeScript, Node.js, AWS e Google Cloud",
       "contactPoint": {
         "@type": "ContactPoint",
@@ -145,7 +145,7 @@
         "@type": "Person",
         "name": "Thiago José Fagundes Saquette",
         "jobTitle": "Desenvolvedor FullStack",
-        "url": "https://www.thiagosaquette.org/",
+        "url": "https://www.thiagosaquette.org",
         "sameAs": [
           "https://www.linkedin.com/in/saquette/",
           "https://github.com/saquettepj"
