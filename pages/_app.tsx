@@ -8,7 +8,7 @@ import seo from '../src/seo.json'
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter()
   
-  // URL canônica preferida (sempre com www)
+  // URL canônica preferida (sem www)
   const canonicalUrl = seo.canonical
   
   // Construir URL atual baseada no pathname, sempre usando a versão canônica
