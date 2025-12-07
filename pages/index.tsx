@@ -311,6 +311,12 @@ const projects: Project[] = [
     ref: 'https://saquettepj.github.io/PongLike/',
     name: 'Jogo em Aplicação Web',
     description: 'Desenvolvimento de Jogo Web Híbrido (Breakout/Roguelike) em (HTML5 Canvas, JS) co-desenvolvido com IA (engenharia de prompt avançada) e validado por code review intenso e ajustes manuais. Foco na integração de mecânicas complexas e na otimização de renderização. O projeto incluiu a gestão de múltiplos estados de jogo (menu, loja, game over) e a implementação de um sistema visual utilizando partículas.'
+  },
+  {
+    img: `${baseImageUrl}/site-exercicios.png`,
+    ref: 'https://saquettepj.github.io/fit-app/',
+    name: 'FitGo - App de Exercícios',
+    description: 'Aplicativo de exercícios mobile-first desenvolvido em Next.js, TypeScript e Tailwind CSS. Oferece três níveis de intensidade (Leve, Mediano, Intenso) com timer circular animado, sistema de áudio para feedback e interface touch-friendly otimizada para dispositivos móveis.'
   }
 ];
 

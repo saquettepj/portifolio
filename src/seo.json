@@ -1,6 +1,6 @@
 {
   "title": "Thiago Saquette - Desenvolvedor FullStack | React, TypeScript",
-  "description": "Desenvolvedor FullStack brasileiro com 5 anos de experiência em React, TypeScript, Node.js, Python, AWS, Google. Projetos com IA e automações.",
+  "description": "Desenvolvedor FullStack brasileiro com 5 anos de experiência em React, TypeScript, Node.js, Python, AWS, Google. Projetos com IA, automações e aplicativos mobile-first.",
   "keywords": "desenvolvedor, desenvolvedor de software, desenvolvedor full stack, desenvolvedor full stack python, desenvolvedor python, desenvolvedor react, desenvolvedor typescript, desenvolvedor javascript, desenvolvedor nodejs, desenvolvedor back end, desenvolvedor back end python, desenvolvedor front end, desenvolvedor web, desenvolvedor de sistemas, desenvolvedor de aplicativos, desenvolvedor de ia, desenvolvedor remoto, desenvolvedor home office, desenvolvedor freelancer, desenvolvedor pleno, desenvolvedor senior, desenvolvedor junior, desenvolvedor curitiba, desenvolvedor brasil, desenvolvedor brasileiro, python developer, react developer, nodejs developer, typescript developer, aws, google cloud, machine learning, inteligência artificial, automação, saas, b2b, programador brasil",
   "author": "Thiago José Fagundes Saquette",
   "viewport": "width=device-width, initial-scale=1, viewport-fit=cover",
@@ -37,7 +37,7 @@
     "type": "website",
     "url": "https://thiagosaquette.org",
     "title": "Thiago Saquette - Desenvolvedor FullStack | Python, React, TypeScript",
-    "description": "Desenvolvedor FullStack brasileiro com 5 anos de experiência. Experiência em Python, React, TypeScript, Node.js, AWS e Google Cloud.",
+    "description": "Desenvolvedor FullStack brasileiro com 5 anos de experiência. Experiência em Python, React, TypeScript, Node.js, AWS, Google Cloud e desenvolvimento de aplicativos mobile-first.",
     "images": [
       "https://thiagosaquette.org/portifolio-img.jpg",
       "https://thiagosaquette.org/portifolio-img.jpg"
@@ -52,7 +52,7 @@
     "card": "summary_large_image",
     "url": "https://thiagosaquette.org",
     "title": "Thiago Saquette - Desenvolvedor FullStack",
-    "description": "Desenvolvedor FullStack brasileiro com 5 anos de experiência. Experiêcia em Python, React, TypeScript, Node.js, AWS e Google Cloud.",
+    "description": "Desenvolvedor FullStack brasileiro com 5 anos de experiência. Experiência em Python, React, TypeScript, Node.js, AWS, Google Cloud e desenvolvimento de aplicativos mobile-first.",
     "images": [
       "https://thiagosaquette.org/portifolio-img.jpg",
       "https://thiagosaquette.org/portifolio-img.jpg"
@@ -64,7 +64,7 @@
       "@type": "Person",
       "name": "Thiago José Fagundes Saquette",
       "jobTitle": "Desenvolvedor FullStack",
-      "description": "Desenvolvedor FullStack brasileiro com 5 anos de experiência em Python, React, TypeScript, Node.js, AWS e Google Cloud",
+      "description": "Desenvolvedor FullStack brasileiro com 5 anos de experiência em Python, React, TypeScript, Node.js, AWS, Google Cloud e desenvolvimento de aplicativos mobile-first",
       "url": "https://thiagosaquette.org",
       "birthDate": "1997-09-17",
       "gender": "Male",
@@ -124,7 +124,7 @@
       "@type": "Organization",
       "name": "THIAGO JOSE FAGUNDES SAQUETTE",
       "url": "https://thiagosaquette.org",
-      "description": "Desenvolvedor FullStack especializado em Python, React, TypeScript, Node.js, AWS e Google Cloud",
+      "description": "Desenvolvedor FullStack especializado em Python, React, TypeScript, Node.js, AWS, Google Cloud e desenvolvimento de aplicativos mobile-first",
       "contactPoint": {
         "@type": "ContactPoint",
         "telephone": "+55-41-99247-3450",
